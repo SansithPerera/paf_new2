@@ -27,3 +27,30 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping("/posts")
+public class PostManagementController {
+    @Autowired
+    private PostManagementRepository postRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
+
+    @Value("${media.upload.dir}")
+    private String uploadDir;
+
+    @PostMapping
+    public ResponseEntity<?> createPost(
+            @RequestParam String userID,
+            @RequestParam String title,
+            @RequestParam String description,
+            @RequestParam String category, // New parameter for category
+            @RequestParam List<MultipartFile> mediaFiles) {
+
+        if (mediaFiles.size() < 1 || mediaFiles.size() > 3) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You must upload between 1 and 3 media files.");
+        }
