@@ -117,3 +117,29 @@ public class PostManagementController {
     public ResponseEntity<?> deletePost(@PathVariable String postId) {
         PostManagementModel post = postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found: " + postId));
+
+                }
+
+    @GetMapping
+    public List<PostManagementModel> getAllPosts() {
+        return postRepository.findAll();
+    }
+
+    @GetMapping("/user/{userID}")
+    public List<PostManagementModel> getPostsByUser(@PathVariable String userID) {
+        return postRepository.findAll().stream()
+                .filter(post -> post.getUserID().equals(userID))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/{postId}")
+    public ResponseEntity<?> getPostById(@PathVariable String postId) {
+        PostManagementModel post = postRepository.findById(postId)
+                .orElseThrow(() -> new ResourceNotFoundException("Post not found: " + postId));
+        return ResponseEntity.ok(post);
+    }
+
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<?> deletePost(@PathVariable String postId) {
+        PostManagementModel post = postRepository.findById(postId)
+                .orElseThrow(() -> new ResourceNotFoundException("Post not found: " + postId));
