@@ -54,3 +54,41 @@ public class PostManagementController {
         if (mediaFiles.size() < 1 || mediaFiles.size() > 3) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You must upload between 1 and 3 media files.");
         }
+
+        // Resolve the upload directory as an absolute path
+        final File uploadDirectory = new File(uploadDir.isBlank() ? uploadDir : System.getProperty("user.dir"), uploadDir);
+
+        // Ensure the upload directory exists
+        if (!uploadDirectory.exists()) {
+            boolean created = uploadDirectory.mkdirs();
+            if (!created) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create upload directory.");
+            }
+        }
+
+        List<String> mediaUrls = mediaFiles.stream()
+                .filter(file -> file.getContentType().matches("image/(jpeg|png|jpg)|video/mp4"))
+                .map(file -> {
+                    try {
+                        // Generate a unique filename
+                        String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());
+                        String uniqueFileName = System.currentTimeMillis() + "_" + UUID.randomUUID() + "." + extension;
+
+                        Path filePath = uploadDirectory.toPath().resolve(uniqueFileName);
+                        file.transferTo(filePath.toFile());
+                        return "/media/" + uniqueFileName; // URL to access the file
+                    } catch (IOException e) {
+                        throw new RuntimeException("Failed to store file " + file.getOriginalFilename(), e);
+                    }
+                })
+                .collect(Collectors.toList());
+
+        PostManagementModel post = new PostManagementModel();
+        post.setUserID(userID);
+        post.setTitle(title);
+        post.setDescription(description);
+        post.setCategory(category); // Set category
+        post.setMedia(mediaUrls);
+
+        PostManagementModel savedPost = postRepository.save(post);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPost);
