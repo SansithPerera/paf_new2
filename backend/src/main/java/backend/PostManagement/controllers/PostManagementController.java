@@ -143,3 +143,37 @@ public class PostManagementController {
     public ResponseEntity<?> deletePost(@PathVariable String postId) {
         PostManagementModel post = postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found: " + postId));
+
+                post.setTitle(title);
+        post.setDescription(description);
+        post.setCategory(category); // Update category
+
+        if (newMediaFiles != null && !newMediaFiles.isEmpty()) {
+            // Ensure the upload directory exists
+            final File uploadDirectory = new File(uploadDir.isBlank() ? uploadDir : System.getProperty("user.dir"), uploadDir);
+            if (!uploadDirectory.exists()) {
+                boolean created = uploadDirectory.mkdirs();
+                if (!created) {
+                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create upload directory.");
+                }
+            }
+
+            List<String> newMediaUrls = newMediaFiles.stream()
+                    .map(file -> {
+                        try {
+                            String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());
+                            String uniqueFileName = System.currentTimeMillis() + "_" + UUID.randomUUID() + "." + extension;
+                            Path filePath = uploadDirectory.toPath().resolve(uniqueFileName);
+                            file.transferTo(filePath.toFile());
+                            return "/media/" + uniqueFileName;
+                        } catch (IOException e) {
+                            throw new RuntimeException("Failed to store file " + file.getOriginalFilename(), e);
+                        }
+                    })
+                    .collect(Collectors.toList());
+            post.getMedia().addAll(newMediaUrls);
+        }
+
+        postRepository.save(post);
+        return ResponseEntity.ok("Post updated successfully!");
+    }
