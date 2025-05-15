@@ -67,3 +67,32 @@ public class PostManagementModel {
     public List<String> getMedia() {
         return media;
     }
+
+    public void setMedia(List<String> media) {
+        this.media = media;
+    }
+
+    public Map<String, Boolean> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Map<String, Boolean> likes) {
+        this.likes = likes;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+}
