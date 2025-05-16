@@ -58,3 +58,11 @@ public class CommunicationsModel {
     public String getGroupTitle() {
         return groupTitle;
     }
+
+    ublic void setGroupTitle(String groupTitle) {
+        this.groupTitle = groupTitle;
+    }
+
+    public String getGroupDescription() {
+        return groupDescription;
+    }
