@@ -52,3 +52,12 @@ public class NotificationModel {
     public void setRead(boolean read) {
         this.read = read;
     }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+}
