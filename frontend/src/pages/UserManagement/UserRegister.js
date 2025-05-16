@@ -99,3 +99,65 @@ function UserRegister() {
 
             if (response.ok) {
                 const userId = (await response.json()).id; // Get the user ID from the response
+
+                
+                // Step 2: Upload the profile picture
+                if (profilePicture) {
+                    const profileFormData = new FormData();
+                    profileFormData.append('file', profilePicture);
+                    await fetch(`http://localhost:8080/user/${userId}/uploadProfilePicture`, {
+                        method: 'PUT',
+                        body: profileFormData,
+                    });
+                }
+
+                sendVerificationCode(formData.email); // Send verification code
+                setIsVerificationModalOpen(true); // Open verification modal
+            } else if (response.status === 409) {
+                alert('Email already exists!');
+            } else {
+                alert('Failed to register user.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const handleVerifyCode = () => {
+        const savedCode = localStorage.getItem('verificationCode');
+        if (userEnteredCode === savedCode) {
+            alert('Verification successful!');
+            localStorage.removeItem('verificationCode');
+            window.location.href = '/';
+        } else {
+            alert('Invalid verification code. Please try again.');
+        }
+    };
+
+    return (
+        <div className="register-container">
+            <div className="register-content-wrapper">
+                <div className="register-form-container">
+                    <h1 className="register-form-title">Create your account</h1>
+                    
+                    <form onSubmit={handleSubmit} className="register-form">
+                        <div className="profile-upload">
+                            <div className="profile-preview" onClick={triggerFileInput}>
+                                {previewImage ? (
+                                    <img
+                                        src={previewImage}
+                                        alt="Profile Preview"
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                    />
+                                ) : (
+                                    <FaUserCircle size={64} color="#6366f1" />
+                                )}
+                            </div>
+                            <input
+                                id="profilePictureInput"
+                                type="file"
+                                accept="image/*"
+                                onChange={handleProfilePictureChange}
+                                style={{ display: 'none' }}
+                            />
+                        </div>
