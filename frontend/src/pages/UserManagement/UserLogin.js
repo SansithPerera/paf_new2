@@ -35,3 +35,41 @@ function UserLogin() {
       console.error('Error:', error);
     }
   };
+
+  return (
+    <div className="login-container" style={{ backgroundImage: 'url(./img/photography-beautiful.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+      <div className="gradient-overlay" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(135deg, rgba(65, 105, 225, 0.7), rgba(219, 112, 147, 0.8))', zIndex: 1 }}></div>
+        <div className="login-box" style={{ position: 'relative', zIndex: 2, backgroundColor: 'rgba(255, 255, 255, 0.9)', padding: '40px', borderRadius: '15px', maxWidth: '400px', width: '100%', textAlign: 'center', boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)' }}>
+          <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '20px', color: '#333' }}>Welcome  to <br/> Lens Learn</h1>
+          <p style={{ fontSize: '16px', marginBottom: '30px', color: '#555' }}>Log in to explore and share your photography journey</p>
+                
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: '20px' }}>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #ccc', fontSize: '16px', boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' }}
+            />
+          </div>
+
+          <div style={{ marginBottom: '20px' }}>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+              style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #ccc', fontSize: '16px', boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' }}
+            />
+          </div>
+
+          <button type="submit" style={{ width: '100%', padding: '12px', backgroundColor: '#FF6F61', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '16px', cursor: 'pointer', fontWeight: 'bold', transition: 'background-color 0.3s', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}
+            onMouseOver={(e) => e.target.style.backgroundColor = '#E64A45'}
+            onMouseOut={(e) => e.target.style.backgroundColor = '#FF6F61'}>
+            Login
+          </button>
