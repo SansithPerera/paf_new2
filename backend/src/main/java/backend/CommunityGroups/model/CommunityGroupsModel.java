@@ -38,5 +38,7 @@ public class CommunicationsModel {
     public void setId(String id) {
         this.id = id;
     }
-    
-      
+
+     public String getAdminID() {
+        return adminID;
+    } 
