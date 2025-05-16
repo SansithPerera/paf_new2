@@ -71,3 +71,49 @@ function UserProfile() {
     const navigateToUpdate = () => {
         navigate(`/updateUserProfile/${userId}`);
     };
+
+     return (
+        <Layout>
+            <div className="profile-layout" style={{ 
+                position: 'relative', 
+                zIndex: 2,
+                maxWidth: '1200px',
+                margin: '20px auto',
+                padding: '0 15px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '30px'
+            }}>
+                <div className="profile-sidebar" style={{ 
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    borderRadius: '15px',
+                    padding: '30px',
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+                    marginBottom: '20px',
+                    marginTop: '5rem',
+                }}>
+                    {userData && userData.id === localStorage.getItem('userID') && (
+                        <>
+                            <div className="profile-header-section">
+                                <img
+                                    src={
+                                        googleProfileImage
+                                            ? googleProfileImage
+                                            : userProfileImage
+                                                ? userProfileImage
+                                                : Pro
+                                    }
+                                    alt="Profile"
+                                    className="profile-avatar"
+                                    style={{ 
+                                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                                        border: '3px solid #FF6F61'
+                                    }}
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = Pro;
+                                    }}
+                                />
+                                <h2 className="profile-name" style={{ color: '#333', marginTop: '15px' }}>{userData.fullname}</h2>
+                                <span className="profile-role" style={{ color: '#FF6F61' }}>User</span>
+                            </div>
