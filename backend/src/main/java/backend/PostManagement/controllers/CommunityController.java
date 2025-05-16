@@ -39,3 +39,19 @@ public class CommunicationsController {
         return communicationsRepository.findById(id)
                 .orElseThrow(() -> new CommunicationsNotFoundException(id));
     }
+
+    @PutMapping("/communications/{id}")
+    public CommunicationsModel update(@RequestBody CommunicationsModel newCommunicationsModel, @PathVariable String id) {
+        if (groupTitleExists(newCommunicationsModel.getGroupTitle())) {
+            throw new IllegalArgumentException("Group title already exists.");
+        }
+        return communicationsRepository.findById(id)
+                .map(communicationsModel -> {
+                    // Update fields
+                    communicationsModel.setAdminID(newCommunicationsModel.getAdminID());
+                    communicationsModel.setAdminName(newCommunicationsModel.getAdminName());
+                    communicationsModel.setGroupTitle(newCommunicationsModel.getGroupTitle());
+                    communicationsModel.setGroupDescription(newCommunicationsModel.getGroupDescription());
+                    return communicationsRepository.save(communicationsModel);
+                }).orElseThrow(() -> new CommunicationsNotFoundException(id));
+    } 
