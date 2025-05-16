@@ -332,3 +332,66 @@
     gap: 2rem;
     margin: 1.5rem 0;
 }
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-icon {
+    color: #a9c9ff;
+}
+
+.contact-text {
+    color: #4a5568;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.skill-tag {
+    background: #f0f7ff;
+    color: #4a5568;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    border: 1px solid #e2e8f0;
+}
+
+.profile-actions-elegant {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-edit-elegant, .btn-delete-elegant {
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-edit-elegant {
+    background: linear-gradient(135deg, #a9c9ff 0%, #ffbbec 100%);
+    color: #4a5568;
+}
+
+.btn-edit-elegant:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(169, 201, 255, 0.3);
+}
+
+.btn-delete-elegant {
+    background: white;
+    color: #ff9eae;
+    border: 2px solid #ff9eae;
+}
