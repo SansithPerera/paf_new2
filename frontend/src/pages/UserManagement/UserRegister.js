@@ -270,4 +270,48 @@ function UserRegister() {
                             />
                         </div>
 
+                         <button type="submit" className="submit-button">
+                            Create Account
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/google'}
+                            className="google-button"
+                            style={{ background: 'white', border: '1px solid #e5e7eb', color: '#374151' }}
+                        >
+                            <img src={GoogalLogo} alt="Google" style={{ width: '20px', marginRight: '8px' }} />
+                            Sign in with Google
+                        </button>
+                        
+                        <div className="login-link-container">
+                            <p>Already have an account? <a href="/" className="login-link">Sign in</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            {isVerificationModalOpen && (
+                <div className="verification-modal">
+                    <div className="modal-content">
+                        <p className='verify-title'>Verify Your Email</p>
+                        <p>Please enter the verification code sent to your email.</p>
+                        <input
+                            type="text"
+                            value={userEnteredCode}
+                            onChange={(e) => setUserEnteredCode(e.target.value)}
+                            placeholder="Enter verification code"
+                            className="verification-input"
+                        />
+                        <button onClick={handleVerifyCode} className="verification-button">Verify</button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
+export default UserRegister;
+
+
 
