@@ -29,4 +29,10 @@ public class CommunicationsModel {
         this.groupTitle = groupTitle;
         this.groupDescription = groupDescription;
         this.groupMembersIDs = new ArrayList<>();
-    } 
+    }
+
+   public String getId() {
+        return id;
+    }
+    
+      
