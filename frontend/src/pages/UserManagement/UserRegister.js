@@ -39,3 +39,63 @@ function UserRegister() {
             reader.readAsDataURL(file);
         }
     };
+
+     const triggerFileInput = () => {
+        document.getElementById('profilePictureInput').click();
+    };
+
+    const sendVerificationCode = async (email) => {
+        const code = Math.floor(100000 + Math.random() * 900000).toString();
+        localStorage.setItem('verificationCode', code);
+        try {
+            await fetch('http://localhost:8080/sendVerificationCode', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, code }),
+            });
+        } catch (error) {
+            console.error('Error sending verification code:', error);
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        if (!formData.email) {
+            alert("Email is required");
+            isValid = false;
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            alert("Email is invalid");
+            isValid = false;
+        }
+
+        if (!profilePicture) {
+            alert("Profile picture is required");
+            isValid = false;
+        }
+        if (formData.skills.length < 2) {
+            alert("Please add at least two skills.");
+            isValid = false;
+        }
+        if (!isValid) {
+            return; // Stop execution if validation fails
+        }
+
+        try {
+            // Step 1: Create the user
+            const response = await fetch('http://localhost:8080/user', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    fullname: formData.fullname,
+                    email: formData.email,
+                    password: formData.password,
+                    phone: formData.phone,
+                    skills: formData.skills,
+                    bio: formData.bio, // Include bio in the request
+                }),
+            });
+
+            if (response.ok) {
+                const userId = (await response.json()).id; // Get the user ID from the response
