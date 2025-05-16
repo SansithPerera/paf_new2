@@ -42,3 +42,7 @@ public class CommunicationsModel {
      public String getAdminID() {
         return adminID;
     } 
+
+    public void setAdminID(String adminID) {
+        this.adminID = adminID;
+    }
