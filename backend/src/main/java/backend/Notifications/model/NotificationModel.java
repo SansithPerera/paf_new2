@@ -23,3 +23,6 @@ public class NotificationModel {
         this.read = read;
         this.createdAt = createdAt;
     }
+    public String getId() {
+        return id;
+    }
