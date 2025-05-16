@@ -147,4 +147,46 @@ function UserProfile() {
                         </>
                     )}
                 </div>
+
+                 <div className="profile-main-content" style={{ 
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    borderRadius: '15px',
+                    padding: '25px',
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)'
+                }}>
+                    {userData && userData.id === localStorage.getItem('userID') && (
+                        <div className="profile-details-section">
+                            <div className="bio-section">
+                                <h3 style={{ color: '#333', borderBottom: '2px solid #FF6F61', paddingBottom: '8px' }}>About Me</h3>
+                                <p style={{ color: '#555', lineHeight: '1.6' }}>{userData.bio || "No bio added yet"}</p>
+                            </div>
+                            <div className="contact-info">
+                                <h3 style={{ color: '#333', borderBottom: '2px solid #4285F4', paddingBottom: '8px' }}>Contact Information</h3>
+                                <div className="info-item" style={{ margin: '10px 0' }}>
+                                    <FaEnvelope className="info-icon" style={{ color: '#4285F4' }} />
+                                    <span style={{ color: '#555' }}>{userData.email}</span>
+                                </div>
+                                <div className="info-item" style={{ margin: '10px 0' }}>
+                                    <FaPhone className="info-icon" style={{ color: '#4285F4' }} />
+                                    <span style={{ color: '#555' }}>{userData.phone || "Not provided"}</span>
+                                </div>
+                            </div>
+                            <div className="skills-section">
+                                <h3 style={{ color: '#333', borderBottom: '2px solid #DB7093', paddingBottom: '8px' }}>Skills</h3>
+                                <div className="skills-list" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                    {userData.skills && userData.skills.map((skill, index) => (
+                                        <span key={index} className="skill-badge" style={{ 
+                                            backgroundColor: 'rgba(66, 133, 244, 0.1)', 
+                                            color: '#4285F4',
+                                            padding: '6px 12px',
+                                            borderRadius: '20px',
+                                            fontSize: '14px',
+                                            fontWeight: 'bold',
+                                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                                        }}>{skill}</span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            
                 
