@@ -54,4 +54,11 @@ public class CommunicationsController {
                     communicationsModel.setGroupDescription(newCommunicationsModel.getGroupDescription());
                     return communicationsRepository.save(communicationsModel);
                 }).orElseThrow(() -> new CommunicationsNotFoundException(id));
-    } 
+    }
+
+    @DeleteMapping("/communications/{id}")
+    public void delete(@PathVariable String id) {
+        communicationsRepository.deleteById(id);
+    }
+}
+ 
