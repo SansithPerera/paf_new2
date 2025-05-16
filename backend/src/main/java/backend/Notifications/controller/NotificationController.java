@@ -33,3 +33,8 @@ public class NotificationController {
     public ResponseEntity<?> deleteNotification(@PathVariable String id) {
         if (notificationRepository.existsById(id)) {
             notificationRepository.deleteById(id);
+            return ResponseEntity.ok("Notification deleted");
+        }
+        return ResponseEntity.notFound().build();
+    }
+}
