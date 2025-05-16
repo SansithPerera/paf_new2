@@ -66,3 +66,7 @@ public class CommunicationsModel {
     public String getGroupDescription() {
         return groupDescription;
     }
+
+    public void setGroupDescription(String groupDescription) {
+        this.groupDescription = groupDescription;
+    }
