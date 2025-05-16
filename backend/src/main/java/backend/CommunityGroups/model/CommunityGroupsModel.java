@@ -22,4 +22,11 @@ public class CommunicationsModel {
 
     }
 
-    
+   public CommunicationsModel(String id, String adminID, String adminName, String groupTitle, String groupDescription) {
+        this.id = id;
+        this.adminID = adminID;
+        this.adminName = adminName;
+        this.groupTitle = groupTitle;
+        this.groupDescription = groupDescription;
+        this.groupMembersIDs = new ArrayList<>();
+    } 
