@@ -225,3 +225,49 @@ function UserRegister() {
                             </div>
                         </div>
 
+                        <div className="form-group">
+                            <label className="form-label">Skills</label>
+                            <div className="skills-container">
+                                {formData.skills.map((skill, index) => (
+                                    <span key={index} className="skill-tag">{skill}</span>
+                                ))}
+                            </div>
+                            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
+                                <input
+                                    className="form-input"
+                                    type="text"
+                                    placeholder="Add a skill"
+                                    value={skillInput}
+                                    onChange={(e) => setSkillInput(e.target.value)}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={handleAddSkill}
+                                    style={{
+                                        padding: '0.75rem',
+                                        background: '#6366f1',
+                                        color: 'white',
+                                        borderRadius: '12px',
+                                        border: 'none',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    <IoMdAdd size={20} />
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="form-group">
+                            <label className="form-label">Bio</label>
+                            <textarea
+                                className="form-input"
+                                name="bio"
+                                placeholder="Tell us about yourself..."
+                                value={formData.bio}
+                                onChange={handleInputChange}
+                                rows={4}
+                                required
+                            />
+                        </div>
+
+
