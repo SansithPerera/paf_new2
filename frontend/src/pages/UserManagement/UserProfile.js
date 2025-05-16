@@ -225,4 +225,40 @@ function UserProfile() {
                                 >
                                     <FaEdit style={{ marginRight: '10px', fontSize: '20px' }} /> Edit Profile
                                 </button>
+
+                                <button 
+                                    onClick={handleDelete}
+                                    className="action-button delete"
+                                    style={{
+                                        backgroundColor: '#FF6F61',
+                                        color: '#fff',
+                                        border: 'none',
+                                        borderRadius: '10px',
+                                        padding: '15px 25px',
+                                        fontSize: '18px',
+                                        fontWeight: 'bold',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease',
+                                        boxShadow: '0 4px 12px rgba(255, 111, 97, 0.3)',
+                                        minWidth: '160px',
+                                        letterSpacing: '0.5px'
+                                    }}
+                                    onMouseOver={(e) => {
+                                        e.target.style.backgroundColor = '#E64A45';
+                                        e.target.style.transform = 'translateY(-2px)';
+                                        e.target.style.boxShadow = '0 6px 14px rgba(255, 111, 97, 0.4)';
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.target.style.backgroundColor = '#FF6F61';
+                                        e.target.style.transform = 'translateY(0)';
+                                        e.target.style.boxShadow = '0 4px 12px rgba(255, 111, 97, 0.3)';
+                                    }}
+                                >
+                                    Delete Account
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
                 
