@@ -117,3 +117,34 @@ function UserProfile() {
                                 <h2 className="profile-name" style={{ color: '#333', marginTop: '15px' }}>{userData.fullname}</h2>
                                 <span className="profile-role" style={{ color: '#FF6F61' }}>User</span>
                             </div>
+
+                            <div className="profile-quick-stats">
+                                <div className="stat-box" style={{ 
+                                    backgroundColor: 'rgba(255, 111, 97, 0.1)',
+                                    borderRadius: '8px',
+                                    transition: 'transform 0.3s'
+                                }}>
+                                    <span className="stat-number" style={{ color: '#FF6F61', fontWeight: 'bold' }}>12</span>
+                                    <span className="stat-label" style={{ color: '#555' }}>Posts</span>
+                                </div>
+                                <div className="stat-box" style={{ 
+                                    backgroundColor: 'rgba(66, 133, 244, 0.1)',
+                                    borderRadius: '8px',
+                                    transition: 'transform 0.3s'
+                                }}>
+                                    <span className="stat-number" style={{ color: '#4285F4', fontWeight: 'bold' }}>5</span>
+                                    <span className="stat-label" style={{ color: '#555' }}>Skills</span>
+                                </div>
+                                <div className="stat-box" style={{ 
+                                    backgroundColor: 'rgba(219, 112, 147, 0.1)',
+                                    borderRadius: '8px',
+                                    transition: 'transform 0.3s'
+                                }}>
+                                    <span className="stat-number" style={{ color: '#DB7093', fontWeight: 'bold' }}>3</span>
+                                    <span className="stat-label" style={{ color: '#555' }}>Awards</span>
+                                </div>
+                            </div>
+                        </>
+                    )}
+                </div>
+                
