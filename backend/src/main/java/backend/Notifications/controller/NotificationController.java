@@ -24,3 +24,7 @@ public class NotificationController {
     public ResponseEntity<?> markAsRead(@PathVariable String id) {
         return notificationRepository.findById(id).map(notification -> {
             notification.setRead(true);
+            notificationRepository.save(notification);
+            return ResponseEntity.ok("Notification marked as read");
+        }).orElse(ResponseEntity.notFound().build());
+    }
