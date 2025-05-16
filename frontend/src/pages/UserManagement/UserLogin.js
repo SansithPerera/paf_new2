@@ -73,3 +73,30 @@ function UserLogin() {
             onMouseOut={(e) => e.target.style.backgroundColor = '#FF6F61'}>
             Login
           </button>
+
+          <div style={{ margin: '20px 0', color: '#aaa' }}>OR</div>
+
+          <button
+            type="button"
+            onClick={() => window.location.href = 'http://localhost:8080/oauth2/authorization/google'}
+            style={{ width: '100%', padding: '12px', backgroundColor: '#4285F4', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '16px', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background-color 0.3s', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}
+            onMouseOver={(e) => e.target.style.backgroundColor = '#3367D6'}
+            onMouseOut={(e) => e.target.style.backgroundColor = '#4285F4'}
+          >
+            <img src={GoogalLogo} alt='Google' style={{ width: '20px', marginRight: '10px' }} />
+            Sign in with Google
+          </button>
+
+          <p style={{ marginTop: '20px', fontSize: '14px', color: '#555' }}>
+            Don't have an account? 
+            <span onClick={() => (window.location.href = '/register')} style={{ color: '#FF6F61', cursor: 'pointer', textDecoration: 'underline' }}>
+              Sign up
+            </span>
+          </p>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default UserLogin;
