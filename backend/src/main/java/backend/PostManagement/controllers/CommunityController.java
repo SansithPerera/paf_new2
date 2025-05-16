@@ -28,3 +28,14 @@ public class CommunicationsController {
         }
         return communicationsRepository.save(newCommunicationsModel);
     }  
+    
+    @GetMapping("/communications")
+    List<CommunicationsModel> getAll() {
+        return communicationsRepository.findAll();
+    }
+
+    @GetMapping("/communications/{id}")
+    CommunicationsModel getById(@PathVariable String id) {
+        return communicationsRepository.findById(id)
+                .orElseThrow(() -> new CommunicationsNotFoundException(id));
+    }
