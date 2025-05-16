@@ -190,3 +190,38 @@ function UserRegister() {
                             </div>
                         </div>
 
+                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                            <div className="form-group">
+                                <label className="form-label">Password</label>
+                                <input
+                                    className="form-input"
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    value={formData.password}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Phone</label>
+                                <input
+                                    className="form-input"
+                                    type="text"
+                                    name="phone"
+                                    placeholder="Phone"
+                                    value={formData.phone}
+                                    onChange={(e) => {
+                                        const re = /^[0-9\b]{0,10}$/;
+                                        if (re.test(e.target.value)) {
+                                            handleInputChange(e);
+                                        }
+                                    }}
+                                    maxLength="10"
+                                    pattern="[0-9]{10}"
+                                    title="Please enter exactly 10 digits."
+                                    required
+                                />
+                            </div>
+                        </div>
+
