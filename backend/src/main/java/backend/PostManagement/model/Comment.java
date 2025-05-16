@@ -17,3 +17,11 @@ public class Comment {
     public String getUserID() {
         return userID;
     }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getUserFullName() {
+        return userFullName;
+    }
