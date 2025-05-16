@@ -19,3 +19,33 @@ export const fetchUserDetails = async (userId) => {
         return null;
     }
 };
+
+function UserProfile() {
+    const [userData, setUserData] = useState(null);
+    const navigate = useNavigate();
+    const userId = localStorage.getItem('userID');
+    const [googleProfileImage, setGoogleProfileImage] = useState(null);
+    const [userType, setUserType] = useState(null);
+    const [userProfileImage, setUserProfileImage] = useState(null);
+
+    useEffect(() => {
+        const userId = localStorage.getItem('userID');
+        if (userId) {
+            fetchUserDetails(userId).then((data) => setUserData(data));
+        }
+    }, []);
+
+    useEffect(() => {
+        const storedUserType = localStorage.getItem('userType');
+        setUserType(storedUserType);
+        if (storedUserType === 'google') {
+            const googleImage = localStorage.getItem('googleProfileImage');
+            setGoogleProfileImage(googleImage);
+        } else if (userId) {
+            fetchUserDetails(userId).then((data) => {
+                if (data && data.profilePicturePath) {
+                    setUserProfileImage(`http://localhost:8080/uploads/profile/${data.profilePicturePath}`);
+                }
+            });
+        }
+    }, [userId]);
