@@ -37,3 +37,7 @@ public class NotificationModel {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+    public String getMessage() {
+        return message;
+    }
