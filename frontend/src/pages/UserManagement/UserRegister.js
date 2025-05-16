@@ -161,3 +161,32 @@ function UserRegister() {
                                 style={{ display: 'none' }}
                             />
                         </div>
+
+                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                            <div className="form-group">
+                                <label className="form-label">Full Name</label>
+                                <input
+                                    className="form-input"
+                                    type="text"
+                                    name="fullname"
+                                    placeholder="Enter your full name"
+                                    value={formData.fullname}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label className="form-label">Email Address</label>
+                                <input
+                                    className="form-input"
+                                    type="email"
+                                    name="email"
+                                    placeholder="Enter your email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
+                        </div>
+
