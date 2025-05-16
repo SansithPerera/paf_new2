@@ -7,3 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+@RestController
+@RequestMapping("/notifications")
+@CrossOrigin("http://localhost:3000")
+public class NotificationController {
+    @Autowired
+    private NotificationRepository notificationRepository;
