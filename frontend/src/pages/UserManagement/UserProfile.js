@@ -188,5 +188,41 @@ function UserProfile() {
                                 </div>
                             </div>
 
-                            
+                            <div className="button-section" style={{ 
+                                marginTop: '30px', 
+                                display: 'flex', 
+                                gap: '20px',
+                                justifyContent: 'center',
+                                flexWrap: 'wrap'
+                            }}>
+                                <button 
+                                    onClick={navigateToUpdate}
+                                    className="action-button edit"
+                                    style={{
+                                        backgroundColor: '#4285F4',
+                                        color: '#fff',
+                                        border: 'none',
+                                        borderRadius: '10px',
+                                        padding: '15px 25px',
+                                        fontSize: '18px',
+                                        fontWeight: 'bold',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease',
+                                        boxShadow: '0 4px 12px rgba(66, 133, 244, 0.3)',
+                                        minWidth: '160px',
+                                        letterSpacing: '0.5px'
+                                    }}
+                                    onMouseOver={(e) => {
+                                        e.target.style.backgroundColor = '#3367D6';
+                                        e.target.style.transform = 'translateY(-2px)';
+                                        e.target.style.boxShadow = '0 6px 14px rgba(66, 133, 244, 0.4)';
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.target.style.backgroundColor = '#4285F4';
+                                        e.target.style.transform = 'translateY(0)';
+                                        e.target.style.boxShadow = '0 4px 12px rgba(66, 133, 244, 0.3)';
+                                    }}
+                                >
+                                    <FaEdit style={{ marginRight: '10px', fontSize: '20px' }} /> Edit Profile
+                                </button>
                 
