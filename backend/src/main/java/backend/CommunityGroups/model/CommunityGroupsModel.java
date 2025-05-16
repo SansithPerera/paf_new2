@@ -54,3 +54,7 @@ public class CommunicationsModel {
     public void setAdminName(String adminName) {
         this.adminName = adminName;
     }
+
+    public String getGroupTitle() {
+        return groupTitle;
+    }
