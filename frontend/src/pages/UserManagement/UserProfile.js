@@ -49,3 +49,25 @@ function UserProfile() {
             });
         }
     }, [userId]);
+
+     const handleDelete = () => {
+        if (window.confirm("Are you sure you want to delete your profile?")) {
+            fetch(`http://localhost:8080/user/${userId}`, {
+                method: 'DELETE',
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        alert("Profile deleted successfully!");
+                        localStorage.removeItem('userID');
+                        navigate('/'); // Redirect to home or login page
+                    } else {
+                        alert("Failed to delete profile.");
+                    }
+                })
+                .catch((error) => console.error('Error:', error));
+        }
+    };
+
+    const navigateToUpdate = () => {
+        navigate(`/updateUserProfile/${userId}`);
+    };
