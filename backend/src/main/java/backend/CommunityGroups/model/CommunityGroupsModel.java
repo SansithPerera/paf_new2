@@ -70,3 +70,9 @@ public class CommunicationsModel {
     public void setGroupDescription(String groupDescription) {
         this.groupDescription = groupDescription;
     }
+
+    public List<String> getGroupMembersIDs() {
+        return groupMembersIDs;
+    }
+
+    
