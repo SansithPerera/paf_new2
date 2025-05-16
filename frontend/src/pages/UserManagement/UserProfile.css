@@ -65,3 +65,75 @@
     flex-wrap: wrap;
     gap: 0.5rem;
 }
+
+.skill-tag {
+    background: #e9ecef;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #495057;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.edit-button, .delete-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.edit-button {
+    background: #007bff;
+    color: white;
+}
+
+.delete-button {
+    background: #dc3545;
+    color: white;
+}
+
+.pro_left_card {
+  flex: 1;
+}
+
+.user_data_card_new {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.user_data_card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.user_data_card_item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.profile-actions {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
