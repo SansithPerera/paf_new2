@@ -19,3 +19,12 @@ public class CommunicationsController {
         return communicationsRepository.findAll().stream()
                 .anyMatch(group -> group.getGroupTitle().equalsIgnoreCase(groupTitle));
     }
+  
+    // Insert
+    @PostMapping("/communications")
+    public CommunicationsModel newCommunicationsModel(@RequestBody CommunicationsModel newCommunicationsModel) {
+        if (groupTitleExists(newCommunicationsModel.getGroupTitle())) {
+            throw new IllegalArgumentException("Group title already exists.");
+        }
+        return communicationsRepository.save(newCommunicationsModel);
+    }  
