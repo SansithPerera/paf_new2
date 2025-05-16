@@ -25,3 +25,11 @@ public class Comment {
     public String getUserFullName() {
         return userFullName;
     }
+
+    public void setUserFullName(String userFullName) {
+        this.userFullName = userFullName;
+    }
+
+    public String getContent() {
+        return content;
+    }
