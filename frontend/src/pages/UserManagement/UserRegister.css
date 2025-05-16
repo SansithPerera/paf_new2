@@ -42,3 +42,62 @@
 .profile-icon-container:hover {
     border-color: #60a5fa;
 }
+
+
+.profileicon {
+    width: 80px;
+    height: 80px;
+    color: #d1d5db;
+}
+
+.selectedimagepreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.Auth_formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.Auth_label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+}
+
+.Auth_input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.Auth_input:focus {
+    outline: none;
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+.skil_dis_con {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.skil_name {
+    padding: 0.25rem 1rem;
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+}
+
+.skil_addbtn {
+    display: flex;
+    gap: 0.5rem;
+}
