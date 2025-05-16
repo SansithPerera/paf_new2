@@ -14,3 +14,8 @@ import java.util.List;
 public class NotificationController {
     @Autowired
     private NotificationRepository notificationRepository;
+
+    @GetMapping("/{userId}")
+    public List<NotificationModel> getNotifications(@PathVariable String userId) {
+        return notificationRepository.findByUserId(userId);
+    }
