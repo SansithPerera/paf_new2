@@ -75,4 +75,8 @@ public class CommunicationsModel {
         return groupMembersIDs;
     }
 
-    
+    public void setGroupMembersIDs(List<String> groupMembersIDs) {
+        this.groupMembersIDs = groupMembersIDs;
+    }
+}
+
