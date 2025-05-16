@@ -255,3 +255,11 @@ public class PostManagementController {
                 })
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
+
+    @PutMapping("/{postId}/comment/{commentId}")
+    public ResponseEntity<PostManagementModel> updateComment(
+            @PathVariable String postId,
+            @PathVariable String commentId,
+            @RequestBody Map<String, String> request) {
+        String userID = request.get("userID");
+        String content = request.get("content");
