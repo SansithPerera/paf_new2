@@ -68,3 +68,41 @@ function CreateGroup() {
       console.error('Error:', error);
       alert(error.message || 'An error occurred.');
     }
+
+    turn (
+    <div>
+      <NavBar />
+      <br /><br /><br />
+      <div className="create-group-container">
+        <h2>Create Group</h2>
+        <form className="create-group-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Group Title</label>
+            <input
+              name="groupTitle"
+              placeholder="Enter group title"
+              value={formData.groupTitle}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Group Description</label>
+            <textarea
+              name="groupDescription"
+              placeholder="Enter group description"
+              value={formData.groupDescription}
+              onChange={handleChange}
+              required
+              rows={4}
+            />
+          </div>
+          <button type="submit" className="submit-btn">Create Group</button>
+        </form>
+      </div>
+      <br />
+    </div>
+  );
+}
+
+export default CreateGroup;
