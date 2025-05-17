@@ -119,4 +119,56 @@ function MyGroup() {
               cursor: 'pointer',
               transition: 'all 0.3s ease',
             }}
-          ></button>         
+          ></button> 
+          
+            My Joined Group
+          </button>
+        </div>
+        {groups.filter(group => group.adminID === userId).length === 0 ? (
+          <div className="empty-state">
+            <FaUserCog className="empty-icon" />
+            <p>No groups found. Please create a new group.</p>
+          </div>
+        ) : (
+          <ul className="groups-list">
+            {groups
+              .filter(group => group.adminID === userId)
+              .map((group) => (
+                <li key={group.id} className="group-item">
+                  <div className="group-content">
+                    <div className="group-header">
+                      <h3 className="group-title">{group.groupTitle}</h3>
+                      <p className="group-description">{group.groupDescription}</p>
+                    </div>
+                    <div className="group-admin-info">
+                      <span className="admin-name">Admin: {group.adminName}</span>
+                      <span className="admin-id">ID: {group.adminID}</span>
+                    </div>
+                  </div>
+                  <div className="group-actions">
+                    <button
+                      className="action-btn edit-btn"
+                      onClick={() => (window.location.href = `/updateGroupDetails/${group.id}`)}
+                    >
+                      <FaEdit className="btn-icon" /> Edit
+                    </button>
+                    <button
+                      className="action-btn delete-btn"
+                      onClick={() => handleDelete(group.id)}
+                    >
+                      <FaTrash className="btn-icon" /> Delete
+                    </button>
+                  </div>
+                </li>
+              ))}
+          </ul>
+        )}
+      </div>
+      <br />
+    </div>
+  );
+}
+
+
+export default MyGroup;
+                                  
