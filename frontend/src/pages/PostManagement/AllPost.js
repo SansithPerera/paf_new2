@@ -89,3 +89,72 @@ function AllPost() {
 
     fetchFollowedUsers();
   }, []);
+
+  // New function to filter posts by followed users
+  const handleFollowingPostsToggle = () => {
+    // Reset other filters
+    setShowMyPosts(false);
+    
+    if (showFollowingPosts) {
+      // Show all posts
+      setFilteredPosts(posts);
+      setShowFollowingPosts(false);
+    } else {
+      // Show only posts from followed users
+      setFilteredPosts(posts.filter((post) => followedUsers.includes(post.userID)));
+      setShowFollowingPosts(true);
+    }
+  };
+
+  const handleDelete = async (postId) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+    if (!confirmDelete) {
+      return; // Exit if the user cancels the confirmation
+    }
+
+    try {
+      await axios.delete(`http://localhost:8080/posts/${postId}`);
+      alert('Post deleted successfully!');
+      setPosts(posts.filter((post) => post.id !== postId)); // Remove the deleted post from the UI
+      setFilteredPosts(filteredPosts.filter((post) => post.id !== postId)); // Update filtered posts
+    } catch (error) {
+      console.error('Error deleting post:', error);
+      alert('Failed to delete post.');
+    }
+  };
+
+  const handleUpdate = (postId) => {
+    navigate(`/updatePost/${postId}`); // Navigate to the UpdatePost page with the post ID
+  };
+
+  const handleMyPostsToggle = () => {
+    // Reset following posts filter
+    setShowFollowingPosts(false);
+    
+    if (showMyPosts) {
+      // Show all posts
+      setFilteredPosts(posts);
+    } else {
+      // Filter posts by logged-in user ID
+      setFilteredPosts(posts.filter((post) => post.userID === loggedInUserID));
+    }
+    setShowMyPosts(!showMyPosts); // Toggle the state
+  };
+
+  const handleAllPostsToggle = () => {
+    // Reset all filters
+    setShowMyPosts(false);
+    setShowFollowingPosts(false);
+    setFilteredPosts(posts);
+  };
+
+  const handleLike = async (postId) => {
+    const userID = localStorage.getItem('userID');
+    if (!userID) {
+      alert('Please log in to like a post.');
+      return;
+    }
+    try {
+      const response = await axios.put(`http://localhost:8080/posts/${postId}/like`, null, {
+        params: { userID },
+      });
