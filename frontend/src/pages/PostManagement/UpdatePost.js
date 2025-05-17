@@ -309,3 +309,132 @@ function UpdatePost() {
                   </div>
                 </label>
               </div>
+
+               {mediaPreviews.length > 0 && (
+                <div className="media-preview-grid" style={{ 
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+                  gap: '10px',
+                  marginTop: '15px'
+                }}>
+                  {mediaPreviews.map((preview, index) => (
+                    <div key={index} className="media-preview-item" style={{ 
+                      position: 'relative',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                    }}>
+                      {preview.type.startsWith('video/') ? (
+                        <video controls className="media-preview" style={{ width: '100%', height: '150px', objectFit: 'cover' }}>
+                          <source src={preview.url} type={preview.type} />
+                          Your browser does not support the video tag.
+                        </video>
+                      ) : (
+                        <img 
+                          className="media-preview" 
+                          src={preview.url} 
+                          alt={`Preview ${index}`} 
+                          style={{ width: '100%', height: '150px', objectFit: 'cover' }}
+                        />
+                      )}
+                      <button 
+                        type="button" 
+                        className="remove-media-btn"
+                        onClick={() => {
+                          const newPreviews = [...mediaPreviews];
+                          newPreviews.splice(index, 1);
+                          setMediaPreviews(newPreviews);
+                          
+                          const newMediaFiles = [...newMedia];
+                          newMediaFiles.splice(index, 1);
+                          setNewMedia(newMediaFiles);
+                        }}
+                        style={{
+                          position: 'absolute',
+                          top: '5px',
+                          right: '5px',
+                          background: 'rgba(255, 111, 97, 0.8)',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '50%',
+                          width: '25px',
+                          height: '25px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          padding: '0',
+                          transition: 'background-color 0.3s'
+                        }}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="15" y1="9" x2="9" y2="15"></line>
+                          <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+              
+              {existingMedia.length > 0 && (
+                <div className="media-preview-grid" style={{ 
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+                  gap: '10px',
+                  marginTop: '15px'
+                }}>
+                  {existingMedia.map((mediaUrl, index) => (
+                    <div key={index} className="media-preview-item" style={{ 
+                      position: 'relative',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                    }}>
+                      {mediaUrl.endsWith('.mp4') ? (
+                        <video controls className="media-preview" style={{ width: '100%', height: '150px', objectFit: 'cover' }}>
+                          <source src={`http://localhost:8080${mediaUrl}`} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      ) : (
+                        <img 
+                          className="media-preview" 
+                          src={`http://localhost:8080${mediaUrl}`} 
+                          alt={`Media ${index}`} 
+                          style={{ width: '100%', height: '150px', objectFit: 'cover' }}
+                        />
+                      )}
+                      <button 
+                        type="button" 
+                        className="remove-media-btn"
+                        onClick={() => handleDeleteMedia(mediaUrl)}
+                        style={{
+                          position: 'absolute',
+                          top: '5px',
+                          right: '5px',
+                          background: 'rgba(255, 111, 97, 0.8)',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '50%',
+                          width: '25px',
+                          height: '25px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          padding: '0',
+                          transition: 'background-color 0.3s'
+                        }}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="15" y1="9" x2="9" y2="15"></line>
+                          <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
