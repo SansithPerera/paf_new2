@@ -196,3 +196,93 @@ function UpdateUserProfile() {
                   }}
                 />
               </div>
+
+               <div className="form-group">
+                <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Skills</label>
+                <div className="skills-input-group" style={{ display: 'flex', gap: '10px' }}>
+                  <input
+                    className="form-input"
+                    type="text"
+                    placeholder="Add a skill"
+                    value={skillInput}
+                    onChange={(e) => setSkillInput(e.target.value)}
+                    style={{ 
+                      flex: '1',
+                      padding: '12px', 
+                      borderRadius: '8px', 
+                      border: '1px solid #ccc', 
+                      fontSize: '16px', 
+                      boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' 
+                    }}
+                  />
+                  <button 
+                    type="button" 
+                    className="add-skill-btn" 
+                    onClick={handleAddSkill}
+                    style={{
+                      backgroundColor: '#4285F4',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '8px',
+                      padding: '0 15px',
+                      fontSize: '24px',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 8px rgba(66, 133, 244, 0.3)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                    onMouseOver={(e) => {
+                      e.target.style.backgroundColor = '#3367D6';
+                      e.target.style.transform = 'translateY(-2px)';
+                      e.target.style.boxShadow = '0 6px 14px rgba(66, 133, 244, 0.4)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.target.style.backgroundColor = '#4285F4';
+                      e.target.style.transform = 'translateY(0)';
+                      e.target.style.boxShadow = '0 4px 8px rgba(66, 133, 244, 0.3)';
+                    }}
+                  >
+                    <IoMdAdd />
+                  </button>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Bio</label>
+                <textarea
+                  className="form-input"
+                  name="bio"
+                  placeholder="Tell us about yourself..."
+                  value={formData.bio}
+                  onChange={handleInputChange}
+                  rows={4}
+                  style={{ 
+                    width: '100%', 
+                    padding: '12px', 
+                    borderRadius: '8px', 
+                    border: '1px solid #ccc', 
+                    fontSize: '16px', 
+                    boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+                    resize: 'vertical'
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="skills-display">
+              <div className="skills-tags" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '15px' }}>
+                {formData.skills.map((skill, index) => (
+                  <span key={index} className="skill-tag" style={{ 
+                    backgroundColor: 'rgba(66, 133, 244, 0.1)', 
+                    color: '#4285F4',
+                    padding: '6px 12px',
+                    borderRadius: '20px',
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    display: 'flex',
+                    alignItems: 'center',
+                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                  }}>
+                    {skill}
