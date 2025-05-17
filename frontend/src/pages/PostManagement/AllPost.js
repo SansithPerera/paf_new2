@@ -261,6 +261,14 @@ function AllPost() {
     }
   };
 
+  const handleSaveComment = async (postId, commentId, content) => {
+    try {
+      const userID = localStorage.getItem('userID');
+      await axios.put(`http://localhost:8080/posts/${postId}/comment/${commentId}`, {
+        userID,
+        content,
+      });
+
 setEditingComment({}); // Clear editing state
     } catch (error) {
       console.error('Error saving comment:', error);
