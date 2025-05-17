@@ -794,7 +794,17 @@ setEditingComment({}); // Clear editing state
                       }}
                     />
                   </div>
-
+                  <br/>
+                  {post.comments?.map((comment) => (
+                    <div key={comment.id} className='coment_full_card' style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
+                      padding: '10px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.02)',
+                      borderRadius: '8px',
+                      marginBottom: '10px'
+                    }}></div>
 
 
 
