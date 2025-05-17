@@ -91,3 +91,47 @@
 .skills-display {
   margin-top: 20px;
 }
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tag {
+  background: #e9ecef;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.remove-skill-btn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.profile-upload-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 1.5rem;
+}
