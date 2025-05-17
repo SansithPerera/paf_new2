@@ -258,4 +258,91 @@ function GoogalUserPro() {
                     )}
                 </div>
             </div>
+
+             <div className="dashboard-cards" style={{ 
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center', 
+                gap: '20px',
+                marginTop: '30px',
+                position: 'relative',
+                zIndex: 2
+            }}>
+                <div className="dashboard-card" 
+                    onClick={() => (window.location.href = '/myLearningPlan')}
+                    style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        borderRadius: '15px',
+                        padding: '25px',
+                        boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+                        cursor: 'pointer',
+                        transition: 'transform 0.3s, box-shadow 0.3s',
+                        flex: '1 1 300px',
+                        maxWidth: '350px'
+                    }}
+                    onMouseOver={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-5px)';
+                        e.currentTarget.style.boxShadow = '0 12px 20px rgba(0, 0, 0, 0.2)';
+                    }}
+                    onMouseOut={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.1)';
+                    }}
+                >
+                    <div className="card-icon learning" style={{ 
+                        backgroundColor: 'rgba(66, 133, 244, 0.1)',
+                        color: '#4285F4',
+                        width: '60px',
+                        height: '60px',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        margin: '0 auto 15px',
+                        fontSize: '24px'
+                    }}></div>
+                    <div className="card-content" style={{ textAlign: 'center' }}>
+                        <h3 style={{ color: '#4285F4', margin: '0 0 10px' }}>Learning Plan</h3>
+                        <p style={{ color: '#555', margin: '0' }}>Track your progress</p>
+                    </div>
+                </div>
+                
+                <div className="dashboard-card" 
+                    onClick={() => (window.location.href = '/myAllPost')}
+                    style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        borderRadius: '15px',
+                        padding: '25px',
+                        boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+                        cursor: 'pointer',
+                        transition: 'transform 0.3s, box-shadow 0.3s',
+                        flex: '1 1 300px',
+                        maxWidth: '350px'
+                    }}
+                    onMouseOver={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-5px)';
+                        e.currentTarget.style.boxShadow = '0 12px 20px rgba(0, 0, 0, 0.2)';
+                    }}
+                    onMouseOut={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.1)';
+                    }}
+                >
+                    <div className="card-icon posts" style={{ 
+                        backgroundColor: 'rgba(255, 111, 97, 0.1)',
+                        color: '#FF6F61',
+                        width: '60px',
+                        height: '60px',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        margin: '0 auto 15px',
+                        fontSize: '24px'
+                    }}></div>
+                    <div className="card-content" style={{ textAlign: 'center' }}>
+                        <h3 style={{ color: '#FF6F61', margin: '0 0 10px' }}>My Posts</h3>
+                        <p style={{ color: '#555', margin: '0' }}>View your content</p>
+                    </div>
+                </div>
             
