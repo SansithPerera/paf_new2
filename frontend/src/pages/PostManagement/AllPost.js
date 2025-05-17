@@ -212,6 +212,14 @@ function AllPost() {
         userID,
         content,
       });
+
+      // Update the specific post's comments in the state
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId ? { ...post, comments: response.data.comments } : post
+        )
+      );
+
 setEditingComment({}); // Clear editing state
     } catch (error) {
       console.error('Error saving comment:', error);
