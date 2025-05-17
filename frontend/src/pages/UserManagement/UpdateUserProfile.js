@@ -125,3 +125,74 @@ function UpdateUserProfile() {
                   }}
                 />
               </div>
+
+               <div className="form-group">
+                <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Email Address</label>
+                <input
+                  className="form-input"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  style={{ 
+                    width: '100%', 
+                    padding: '12px', 
+                    borderRadius: '8px', 
+                    border: '1px solid #ccc', 
+                    fontSize: '16px', 
+                    boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' 
+                  }}
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Password</label>
+                <input
+                  className="form-input"
+                  type="password"
+                  name="password"
+                  placeholder="Enter new password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required
+                  style={{ 
+                    width: '100%', 
+                    padding: '12px', 
+                    borderRadius: '8px', 
+                    border: '1px solid #ccc', 
+                    fontSize: '16px', 
+                    boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' 
+                  }}
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Phone</label>
+                <input
+                  className="form-input"
+                  type="text"
+                  name="phone"
+                  placeholder="Enter your phone number"
+                  value={formData.phone}
+                  onChange={(e) => {
+                    const re = /^[0-9\b]{0,10}$/;
+                    if (re.test(e.target.value)) {
+                      handleInputChange(e);
+                    }
+                  }}
+                  maxLength="10"
+                  pattern="[0-9]{10}"
+                  title="Please enter exactly 10 digits."
+                  required
+                  style={{ 
+                    width: '100%', 
+                    padding: '12px', 
+                    borderRadius: '8px', 
+                    border: '1px solid #ccc', 
+                    fontSize: '16px', 
+                    boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' 
+                  }}
+                />
+              </div>
