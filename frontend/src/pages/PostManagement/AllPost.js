@@ -248,7 +248,19 @@ function AllPost() {
             : post
         )
       );
-      
+
+      setFilteredPosts((prevFilteredPosts) =>
+        prevFilteredPosts.map((post) =>
+          post.id === postId
+            ? { ...post, comments: post.comments.filter((comment) => comment.id !== commentId) }
+            : post
+        )
+      );
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
+  };
+
 setEditingComment({}); // Clear editing state
     } catch (error) {
       console.error('Error saving comment:', error);
