@@ -83,3 +83,45 @@ function UpdateUserProfile() {
       console.error('Error:', error);
     }
   };
+
+  return (
+    <Layout>
+      <div className="post-content-wrapper" style={{ maxWidth: '800px', margin: '20px auto' }}>
+        <div className="post-form-container" style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          borderRadius: '15px',
+          padding: '30px',
+          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)'
+        }}>
+          <h1 className="post-form-title" style={{ 
+            color: '#333', 
+            borderBottom: '2px solid #FF6F61', 
+            paddingBottom: '10px',
+            fontSize: '32px',
+            fontWeight: 'bold',
+            marginBottom: '20px',
+            textAlign: 'center'
+          }}>Update Profile</h1>
+          
+          <form onSubmit={handleSubmit} className="post-form">
+            <div className="form-grid">
+              <div className="form-group">
+                <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Full Name</label>
+                <input
+                  className="form-input"
+                  type="text"
+                  name="fullname"
+                  placeholder="Enter your full name"
+                  value={formData.fullname}
+                  onChange={handleInputChange}
+                  required
+                  style={{ 
+                    width: '100%', 
+                    padding: '12px', 
+                    borderRadius: '8px', 
+                    border: '1px solid #ccc', 
+                    fontSize: '16px', 
+                    boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' 
+                  }}
+                />
+              </div>
