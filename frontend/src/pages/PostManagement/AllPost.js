@@ -196,7 +196,22 @@ function AllPost() {
       console.error('Error toggling follow state:', error);
     }
   };
-
+  const handleAddComment = async (postId) => {
+    const userID = localStorage.getItem('userID');
+    if (!userID) {
+      alert('Please log in to comment.');
+      return;
+    }
+    const content = newComment[postId] || ''; // Get the comment content for the specific post
+    if (!content.trim()) {
+      alert('Comment cannot be empty.');
+      return;
+    }
+    try {
+      const response = await axios.post(`http://localhost:8080/posts/${postId}/comment`, {
+        userID,
+        content,
+      });
 setEditingComment({}); // Clear editing state
     } catch (error) {
       console.error('Error saving comment:', error);
