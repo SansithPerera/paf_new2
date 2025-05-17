@@ -36,3 +36,40 @@
   font-weight: 500;
   color: #555;
 }
+
+.Auth_input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.Auth_button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.Auth_button:hover {
+  background-color: #0056b3;
+}
+
+.newpart_set {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.newpart_set_icon {
+  font-size: 24px;
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
