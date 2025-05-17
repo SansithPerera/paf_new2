@@ -75,3 +75,80 @@
   margin: 0 auto;
 }
 
+.Auth_formGroup {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.Auth_label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.Auth_input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cacaca;
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+}
+
+.skil_addbtn {
+  display: flex;
+  width: 100%;
+  gap: 18px;
+}
+
+.Auth_button {
+  width: 100%;
+  padding: 10px;
+  background-color: #004c5d;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.selectedimagepreview {
+  width: 150px;
+  height: 150px;
+}
+
+.profile-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+.newscrol_from {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+  padding-bottom: 35px;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.newscrol_from::-webkit-scrollbar {
+  width: 8px;
+}
+
+.newscrol_from::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
