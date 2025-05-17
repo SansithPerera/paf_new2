@@ -899,7 +899,25 @@ setEditingComment({}); // Clear editing state
                               </>
                             ) : (
                               <></>
-
+                                <GrUpdate className='coment_btn' 
+                                  onClick={() =>
+                                    setEditingComment({ id: comment.id, content: comment.content })
+                                  }
+                                  style={{
+                                    color: '#4285F4',
+                                    cursor: 'pointer',
+                                    fontSize: '24px', // Further increased from 20px
+                                    margin: '0 5px',
+                                    padding: '8px', // Further increased from 6px
+                                    borderRadius: '50%',
+                                    backgroundColor: 'rgba(66, 133, 244, 0.1)',
+                                    width: '40px', // Added fixed width
+                                    height: '40px', // Added fixed height
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    transition: 'all 0.2s ease'
+                                  }}
 
 
 
