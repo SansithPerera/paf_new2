@@ -577,3 +577,384 @@ function MyAllPost() {
                     </div>
                   ))}
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Media Modal"
+        className="media-modal"
+        overlayClassName="media-modal-overlay"
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            zIndex: 1000,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          },
+          content: {
+            position: 'relative',
+            top: 'auto',
+            left: 'auto',
+            right: 'auto',
+            bottom: 'auto',
+            border: 'none',
+            background: 'transparent',
+            maxWidth: '90%',
+            maxHeight: '90%',
+            padding: 0
+          }
+        }}
+      >
+        <button 
+          className="close-modal-btn" 
+          onClick={closeModal}
+          style={{
+            position: 'absolute',
+            top: '-40px',
+            right: '-40px',
+            backgroundColor: '#FF6F61',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '50%',
+            width: '40px',
+            height: '40px',
+            fontSize: '20px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = '#E64A45';
+            e.target.style.transform = 'scale(1.1)';
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = '#FF6F61';
+            e.target.style.transform = 'scale(1)';
+          }}
+        >x</button>
+        {selectedMedia && selectedMedia.endsWith('.mp4') ? (
+          <video controls className="modal-media" style={{ maxWidth: '100%', maxHeight: '80vh', boxShadow: '0 5px 15px rgba(0, 0, 0, 0.3)' }}>
+            <source src={`http://localhost:8080${selectedMedia}`} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <img 
+            src={`http://localhost:8080${selectedMedia}`} 
+            alt="Full Media" 
+            className="modal-media" 
+            style={{ maxWidth: '100%', maxHeight: '80vh', boxShadow: '0 5px 15px rgba(0, 0, 0, 0.3)' }} 
+          />
+        )}
+      </Modal>
+    </Layout>
+  );
+}
+
+export default MyAllPost;
