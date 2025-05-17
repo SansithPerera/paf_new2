@@ -726,7 +726,26 @@ setEditingComment({}); // Clear editing state
                       {Object.values(post.likes || {}).filter((liked) => liked).length}
                     </p>
                   </div>
-
+                  <div>
+                    <div className='like_btn_con' style={{ display: 'flex', alignItems: 'center' }}>
+                      <FaCommentAlt
+                        className='combtn'
+                        style={{
+                          color: '#4285F4',
+                          fontSize: '20px',
+                          marginRight: '5px'
+                        }}
+                      />
+                      <p className='like_num' style={{ 
+                        color: '#555',
+                        marginLeft: '5px',
+                        fontWeight: 'bold'
+                      }}>
+                        {post.comments?.length || 0}
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
 
 
