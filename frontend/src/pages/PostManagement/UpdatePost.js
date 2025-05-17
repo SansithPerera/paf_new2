@@ -168,3 +168,144 @@ function UpdatePost() {
       </Layout>
     );
   }
+
+   return (
+    <Layout>
+      <div className="post-content-wrapper" style={{ 
+        maxWidth: '800px', 
+        margin: '20px auto' 
+      }}>
+        <div className="post-form-container" style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          borderRadius: '15px',
+          padding: '30px',
+          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)'
+        }}>
+          <h1 className="post-form-title" style={{ 
+            color: '#333', 
+            borderBottom: '2px solid #FF6F61', 
+            paddingBottom: '10px',
+            fontSize: '32px',
+            fontWeight: 'bold',
+            marginBottom: '20px',
+            textAlign: 'center'
+          }}>Update Post</h1>
+          
+          <form onSubmit={handleSubmit} className="post-form">
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Title</label>
+              <input
+                className="form-input"
+                type="text"
+                placeholder="Enter an engaging title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' 
+                }}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Description</label>
+              <textarea
+                className="form-textarea"
+                placeholder="Share your thoughts..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+                rows={4}
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+                  resize: 'vertical'
+                }}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Category</label>
+              <select
+                className="form-select"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                required
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' 
+                }}
+              >
+                <option value="" disabled>Select a category</option>
+                <option value="Painting">Painting</option>
+                <option value="Drawing">Drawing</option>
+                <option value="Sculpture">Sculpture</option>
+                <option value="Photography">Photography</option>
+                <option value="Digital Art">Digital Art</option>
+                <option value="Illustration">Illustration</option>
+                <option value="Calligraphy">Calligraphy</option>
+                <option value="Graffiti / Street Art">Graffiti / Street Art</option>
+                <option value="Mixed Media">Mixed Media</option>
+                <option value="Printmaking">Printmaking</option>
+              </select>
+            </div>
+            
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Media</label>
+              <div 
+                className={`file-input ${isDragging ? 'dragging' : ''}`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                style={{
+                  border: '2px dashed #4285F4',
+                  borderRadius: '8px',
+                  padding: '30px',
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  backgroundColor: isDragging ? 'rgba(66, 133, 244, 0.1)' : 'transparent',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <input
+                  id="media-upload"
+                  type="file"
+                  accept="image/jpeg,image/png,image/jpg,video/mp4"
+                  multiple
+                  onChange={handleNewMediaChange}
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="media-upload" className="file-upload-label" style={{ cursor: 'pointer', display: 'block' }}>
+                  <div className="upload-icon" style={{ color: '#4285F4', marginBottom: '15px' }}>
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                  </div>
+                  <div className="upload-text">
+                    <p style={{ fontSize: '16px', fontWeight: 'bold', color: '#4285F4', margin: '0 0 5px' }}>
+                      Drag & drop files here or click to browse
+                    </p>
+                    <p className="upload-hint" style={{ fontSize: '14px', color: '#555', margin: '0 0 5px' }}>
+                      Supports: JPG, PNG, MP4 (max 50MB)
+                    </p>
+                    <p className="upload-limits" style={{ fontSize: '14px', color: '#555', margin: '0' }}>
+                      Limits: 3 images, 1 video (max 30s)
+                    </p>
+                  </div>
+                </label>
+              </div>
