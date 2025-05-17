@@ -498,3 +498,202 @@ setEditingComment({}); // Clear editing state
                 }}
               >Create New Post</button>
             </div>
+            ) : (
+            filteredPosts.map((post) => (
+              <div key={post.id} className='post_card' style={{
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                borderRadius: '15px',
+                padding: '25px',
+                boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+                marginBottom: '30px',
+                transition: 'transform 0.3s, box-shadow 0.3s'
+              }}>
+                <div className='user_details_card' style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: '15px',
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+                  paddingBottom: '10px'
+                }}>
+                  <div className='name_section_post'>
+                    <p className='name_section_post_owner_name' style={{ 
+                      fontWeight: 'bold', 
+                      color: '#333',
+                      margin: 0
+                    }}>{postOwners[post.userID] || 'Anonymous'}</p>
+                    {post.userID !== loggedInUserID && (
+                      <button
+                        className={followedUsers.includes(post.userID) ? 'flow_btn_unfalow' : 'flow_btn'}
+                        onClick={() => handleFollowToggle(post.userID)}
+                        style={{
+                          backgroundColor: followedUsers.includes(post.userID) ? '#FF6F61' : '#4285F4',
+                          color: '#fff',
+                          border: 'none',
+                          borderRadius: '20px',
+                          padding: '5px 12px',
+                          fontSize: '14px',
+                          cursor: 'pointer',
+                          marginLeft: '10px',
+                          transition: 'background-color 0.3s',
+                          boxShadow: followedUsers.includes(post.userID) 
+                            ? '0 2px 5px rgba(255, 111, 97, 0.3)' 
+                            : '0 2px 5px rgba(66, 133, 244, 0.3)'
+                        }}
+                      >
+                        {followedUsers.includes(post.userID) ? 'Unfollow' : 'Follow'}
+                      </button>
+                    )}
+                  </div>
+                  {post.userID === loggedInUserID && (
+                    <div>
+                      <div className='action_btn_icon_post' style={{ display: 'flex', gap: '10px' }}>
+                        <FaEdit
+                          onClick={() => handleUpdate(post.id)} 
+                          className='action_btn_icon'
+                          style={{
+                            color: '#4285F4',
+                            cursor: 'pointer',
+                            fontSize: '24px', // Increased from 18px
+                            transition: 'transform 0.2s',
+                            padding: '10px', // Increased from 8px
+                            borderRadius: '50%',
+                            backgroundColor: 'rgba(66, 133, 244, 0.1)',
+                            width: '45px', // Added fixed width
+                            height: '45px', // Added fixed height
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
+                          onMouseOver={(e) => {
+                            e.target.style.transform = 'scale(1.1)';
+                            e.target.style.backgroundColor = 'rgba(66, 133, 244, 0.2)';
+                          }}
+                          onMouseOut={(e) => {
+                            e.target.style.transform = 'scale(1)';
+                            e.target.style.backgroundColor = 'rgba(66, 133, 244, 0.1)';
+                          }}
+                        />
+                        <RiDeleteBin6Fill
+                          onClick={() => handleDelete(post.id)}
+                          className='action_btn_icon'
+                          style={{
+                            color: '#FF6F61',
+                            cursor: 'pointer',
+                            fontSize: '24px', // Increased from 18px
+                            transition: 'transform 0.2s',
+                            padding: '10px', // Increased from 8px
+                            borderRadius: '50%',
+                            backgroundColor: 'rgba(255, 111, 97, 0.1)',
+                            width: '45px', // Added fixed width
+                            height: '45px', // Added fixed height
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
+                          onMouseOver={(e) => {
+                            e.target.style.transform = 'scale(1.1)';
+                            e.target.style.backgroundColor = 'rgba(255, 111, 97, 0.2)';
+                          }}
+                          onMouseOut={(e) => {
+                            e.target.style.transform = 'scale(1)';
+                            e.target.style.backgroundColor = 'rgba(255, 111, 97, 0.1)';
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className='user_details_card_di' style={{ marginBottom: '15px' }}>
+                  <p className='card_post_title' style={{ 
+                    color: '#333', 
+                    fontSize: '22px', 
+                    fontWeight: 'bold',
+                    marginBottom: '10px'
+                  }}>{post.title}</p>
+                  <p className='card_post_description' style={{ 
+                    whiteSpace: "pre-line",
+                    color: '#555',
+                    fontSize: '16px',
+                    lineHeight: '1.6',
+                    marginBottom: '10px'
+                  }}>{post.description}</p>
+                  <p className='card_post_category' style={{ 
+                    color: '#4285F4',
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    backgroundColor: 'rgba(66, 133, 244, 0.1)',
+                    padding: '5px 10px',
+                    borderRadius: '15px',
+                    display: 'inline-block'
+                  }}>Category: {post.category || 'Uncategorized'}</p>
+                </div>
+                <div className="media-collage" style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                  gap: '10px',
+                  marginBottom: '15px'
+                }}>
+                  {post.media.slice(0, 4).map((mediaUrl, index) => (
+                    <div
+                      key={index}
+                      className={`media-item ${post.media.length > 4 && index === 3 ? 'media-overlay' : ''}`}
+                      onClick={() => openModal(mediaUrl)}
+                      style={{
+                        position: 'relative',
+                        overflow: 'hidden',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        height: '180px'
+                      }}
+                    >
+                      {mediaUrl.endsWith('.mp4') ? (
+                        <video controls style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+                          <source src={`http://localhost:8080${mediaUrl}`} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      ) : (
+                        <img 
+                          src={`http://localhost:8080${mediaUrl}`} 
+                          alt="Post Media" 
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover',
+                            transition: 'transform 0.3s ease'
+                          }}
+                          onMouseOver={(e) => {
+                            e.target.style.transform = 'scale(1.05)';
+                          }}
+                          onMouseOut={(e) => {
+                            e.target.style.transform = 'scale(1)';
+                          }}
+                        />
+                      )}
+                      {post.media.length > 4 && index === 3 && (
+                        <div className="overlay-text" style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                          color: '#fff',
+                          fontSize: '24px',
+                          fontWeight: 'bold'
+                        }}>+{post.media.length - 4}</div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className='like_coment_lne' style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '10px 0',
+                  borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+                  marginBottom: '15px'
+                }}></div>
