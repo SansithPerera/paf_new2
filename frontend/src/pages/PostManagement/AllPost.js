@@ -225,7 +225,12 @@ function AllPost() {
           post.id === postId ? { ...post, comments: response.data.comments } : post
         )
       );
-      
+
+      setNewComment({ ...newComment, [postId]: '' });
+    } catch (error) {
+      console.error('Error adding comment:', error);
+    }
+  };     
 setEditingComment({}); // Clear editing state
     } catch (error) {
       console.error('Error saving comment:', error);
