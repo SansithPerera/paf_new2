@@ -328,3 +328,41 @@
   transition: all 0.2s ease;
   min-width: 90px;
 }
+.edit-btn {
+  background: #f8f9fa;
+  color: #3498db;
+}
+
+.edit-btn:hover {
+  background: #e3f2fd;
+  color: #2980b9;
+}
+
+.delete-btn {
+  background: #f8f9fa;
+  color: #e74c3c;
+}
+
+.delete-btn:hover {
+  background: #fde8e6;
+  color: #c0392b;
+}
+
+.btn-icon {
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .group-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .group-actions {
+    margin-left: 0;
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+  
