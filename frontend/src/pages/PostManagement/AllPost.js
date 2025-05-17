@@ -14,4 +14,4 @@ import { TbPencilCancel } from "react-icons/tb";
 import { FaCommentAlt } from "react-icons/fa";
 import Layout from '../../Components/Layout/Layout';
 import './AllPost.css';
-Modal.setAppElement('#root');
+Modal.setAppElement('#root'); 
