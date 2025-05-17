@@ -146,3 +146,116 @@ function GoogalUserPro() {
                         </>
                     )}
                 </div>
+
+                  <div className="profile-main-content" style={{ 
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    borderRadius: '15px',
+                    padding: '25px',
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)'
+                }}>
+                    {userData && userData.id === localStorage.getItem('userID') && (
+                        <div className="profile-details-section">
+                            <div className="bio-section">
+                                <h3 style={{ color: '#333', borderBottom: '2px solid #FF6F61', paddingBottom: '8px' }}>About Me</h3>
+                                <p style={{ color: '#555', lineHeight: '1.6' }}>{userData.bio || "No bio added yet"}</p>
+                            </div>
+                            <div className="contact-info">
+                                <h3 style={{ color: '#333', borderBottom: '2px solid #4285F4', paddingBottom: '8px' }}>Contact Information</h3>
+                                <div className="info-item" style={{ margin: '10px 0' }}>
+                                    <FaEnvelope className="info-icon" style={{ color: '#4285F4' }} />
+                                    <span style={{ color: '#555' }}>{userData.email}</span>
+                                </div>
+                                <div className="info-item" style={{ margin: '10px 0' }}>
+                                    <FaPhone className="info-icon" style={{ color: '#4285F4' }} />
+                                    <span style={{ color: '#555' }}>{userData.phone || "Not provided"}</span>
+                                </div>
+                            </div>
+                            <div className="skills-section">
+                                <h3 style={{ color: '#333', borderBottom: '2px solid #DB7093', paddingBottom: '8px' }}>Skills</h3>
+                                <div className="skills-list" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                    {userData.skills && userData.skills.map((skill, index) => (
+                                        <span key={index} className="skill-badge" style={{ 
+                                            backgroundColor: 'rgba(66, 133, 244, 0.1)', 
+                                            color: '#4285F4',
+                                            padding: '6px 12px',
+                                            borderRadius: '20px',
+                                            fontSize: '14px',
+                                            fontWeight: 'bold',
+                                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                                        }}>{skill}</span>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="button-section" style={{ 
+                                marginTop: '30px', 
+                                display: 'flex', 
+                                gap: '20px',
+                                justifyContent: 'center',
+                                flexWrap: 'wrap'
+                            }}>
+                                <button 
+                                    onClick={navigateToUpdate}
+                                    className="action-button edit"
+                                    style={{
+                                        backgroundColor: '#4285F4',
+                                        color: '#fff',
+                                        border: 'none',
+                                        borderRadius: '10px',
+                                        padding: '15px 25px',
+                                        fontSize: '18px',
+                                        fontWeight: 'bold',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease',
+                                        boxShadow: '0 4px 12px rgba(66, 133, 244, 0.3)',
+                                        minWidth: '160px',
+                                        letterSpacing: '0.5px'
+                                    }}
+                                    onMouseOver={(e) => {
+                                        e.target.style.backgroundColor = '#3367D6';
+                                        e.target.style.transform = 'translateY(-2px)';
+                                        e.target.style.boxShadow = '0 6px 14px rgba(66, 133, 244, 0.4)';
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.target.style.backgroundColor = '#4285F4';
+                                        e.target.style.transform = 'translateY(0)';
+                                        e.target.style.boxShadow = '0 4px 12px rgba(66, 133, 244, 0.3)';
+                                    }}
+                                >
+                                    <FaEdit style={{ marginRight: '10px', fontSize: '20px' }} /> Edit Profile
+                                </button>
+                                <button 
+                                    onClick={handleDelete}
+                                    className="action-button delete"
+                                    style={{
+                                        backgroundColor: '#FF6F61',
+                                        color: '#fff',
+                                        border: 'none',
+                                        borderRadius: '10px',
+                                        padding: '15px 25px',
+                                        fontSize: '18px',
+                                        fontWeight: 'bold',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease',
+                                        boxShadow: '0 4px 12px rgba(255, 111, 97, 0.3)',
+                                        minWidth: '160px',
+                                        letterSpacing: '0.5px'
+                                    }}
+                                    onMouseOver={(e) => {
+                                        e.target.style.backgroundColor = '#E64A45';
+                                        e.target.style.transform = 'translateY(-2px)';
+                                        e.target.style.boxShadow = '0 6px 14px rgba(255, 111, 97, 0.4)';
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.target.style.backgroundColor = '#FF6F61';
+                                        e.target.style.transform = 'translateY(0)';
+                                        e.target.style.boxShadow = '0 4px 12px rgba(255, 111, 97, 0.3)';
+                                    }}
+                                >
+                                    Delete Account
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+            
