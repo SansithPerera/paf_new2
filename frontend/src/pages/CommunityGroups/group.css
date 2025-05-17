@@ -366,3 +366,49 @@
     width: 100%;
   }
   
+  .action-btn {
+    flex: 1;
+  }
+  
+  .group-admin-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .group-card-full {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .group-content {
+    margin-right: 0;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+  
+  .join-btn {
+    width: 100%;
+  }
+  
+  .group-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+/* Animation for form entry */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.create-group-container {
+  animation: fadeIn 0.5s ease-out forwards;
+}
