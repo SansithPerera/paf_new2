@@ -33,3 +33,20 @@ function AddNewPost() {
         imageCount++;
       } else if (file.type === 'video/mp4') {
         videoCount++;
+
+     // Validate video duration
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+        video.src = URL.createObjectURL(file);
+
+        video.onloadedmetadata = () => {
+          URL.revokeObjectURL(video.src);
+          if (video.duration > 30) {
+            alert(`Video ${file.name} exceeds the maximum duration of 30 seconds.`);
+            window.location.reload();
+          }
+        };
+      } else {
+        alert(`Unsupported file type: ${file.type}`);
+        return;
+      }   
