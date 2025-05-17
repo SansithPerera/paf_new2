@@ -95,3 +95,59 @@ function GroupList() {
           gap: '15px',
           marginBottom: '25px'
         }}>
+          <button
+            onClick={() => (window.location.href = '/groupList')}
+            className="filter-btn"
+            style={{
+              padding: '10px 20px',
+              borderRadius: '20px',
+              border: 'none',
+              background: 'rgba(66, 133, 244, 0.1)',
+              color: '#4285F4',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 8px rgba(66, 133, 244, 0.3)'
+            }}
+          >
+            All Group
+          </button>
+          <button
+            onClick={() => (window.location.href = '/myGroup')}
+            className="filter-btn"
+            style={{
+              padding: '10px 20px',
+              borderRadius: '20px',
+              border: 'none',
+              background: 'rgba(66, 133, 244, 0.1)',
+              color: '#4285F4',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+            }}
+          >
+            My Group
+          </button>
+          <button
+            onClick={() => (window.location.href = '/myJoinedGroup')}
+            className="filter-btn"
+            style={{
+              padding: '10px 20px',
+              borderRadius: '20px',
+              border: 'none',
+              background: 'rgba(66, 133, 244, 0.1)',
+              color: '#4285F4',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+            }}
+          >
+            My Joined Group
+          </button>
+        </div>
+        {groups.length === 0 ? (
+          <div className="no-groups-message">
+            <p>No groups found. Please create a new group.</p>
+          </div>
+        ) : (
+  
