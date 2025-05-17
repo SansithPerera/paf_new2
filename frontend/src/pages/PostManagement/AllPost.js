@@ -220,6 +220,12 @@ function AllPost() {
         )
       );
 
+      setFilteredPosts((prevFilteredPosts) =>
+        prevFilteredPosts.map((post) =>
+          post.id === postId ? { ...post, comments: response.data.comments } : post
+        )
+      );
+      
 setEditingComment({}); // Clear editing state
     } catch (error) {
       console.error('Error saving comment:', error);
