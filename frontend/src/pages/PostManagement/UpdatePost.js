@@ -438,3 +438,45 @@ function UpdatePost() {
                 </div>
               )}
             </div>
+
+            <div style={{ margin: '30px 0', textAlign: 'center' }}>
+              <button 
+                type="submit" 
+                className="submit-button"
+                style={{
+                  width: '100%', 
+                  maxWidth: '400px',
+                  padding: '15px 25px', 
+                  backgroundColor: '#4285F4', 
+                  color: '#fff', 
+                  border: 'none', 
+                  borderRadius: '10px', 
+                  fontSize: '18px', 
+                  cursor: 'pointer', 
+                  fontWeight: 'bold', 
+                  transition: 'all 0.3s ease', 
+                  boxShadow: '0 4px 12px rgba(66, 133, 244, 0.3)',
+                  letterSpacing: '0.5px'
+                }}
+                onMouseOver={(e) => {
+                  e.target.style.backgroundColor = '#3367D6';
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 6px 14px rgba(66, 133, 244, 0.4)';
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.backgroundColor = '#4285F4';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 12px rgba(66, 133, 244, 0.3)';
+                }}
+              >
+                Update Post
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </Layout>
+  );
+}
+
+export default UpdatePost;
