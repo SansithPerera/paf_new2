@@ -388,4 +388,119 @@ function GroupChat() {
                                                     transition: 'background 0.2s'
                                                 }}
                                             ></button>
+
                                             
+                                                <FaTrash size={12} />
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                        <div ref={messagesEndRef} />
+                    </div>
+
+                    {/* Message Input */}
+                    <div style={{
+                        padding: '16px',
+                        borderTop: '1px solid #eee',
+                        backgroundColor: '#f8f9fa'
+                    }}>
+                        <form onSubmit={handleSend} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                            <label style={{
+                                cursor: 'pointer',
+                                margin: 0,
+                                padding: 0,
+                                display: 'flex',
+                                alignItems: 'center'
+                            }}>
+                                <FaImage size={22} color={selectedImage ? "#4285F4" : "#888"} />
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    style={{ display: 'none' }}
+                                    onChange={handleImageChange}
+                                    disabled={!!editMsgId}
+                                />
+                            </label>
+                            {imagePreview && (
+                                <div style={{ position: 'relative', marginRight: 8 }}>
+                                    <img
+                                        src={imagePreview}
+                                        alt="preview"
+                                        style={{
+                                            width: 48,
+                                            height: 48,
+                                            objectFit: 'cover',
+                                            borderRadius: 8,
+                                            border: '1px solid #ccc'
+                                        }}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={handleRemoveImage}
+                                        style={{
+                                            position: 'absolute',
+                                            top: -8,
+                                            right: -8,
+                                            background: '#ea4335',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '50%',
+                                            width: 20,
+                                            height: 20,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            cursor: 'pointer',
+                                            fontSize: 12
+                                        }}
+                                    >
+                                        <FaTimes />
+                                    </button>
+                                </div>
+                            )}
+                            <input
+                                type="text"
+                                value={msg}
+                                onChange={e => setMsg(e.target.value)}
+                                placeholder="Type your message..."
+                                style={{
+                                    flex: 1,
+                                    padding: '12px 16px',
+                                    borderRadius: '24px',
+                                    border: '1px solid #ddd',
+                                    fontSize: '0.95rem',
+                                    outline: 'none',
+                                    transition: 'border 0.2s'
+                                }}
+                                disabled={!!editMsgId}
+                            />
+                            <button
+                                type="submit"
+                                style={{
+                                    width: '48px',
+                                    height: '48px',
+                                    borderRadius: '50%',
+                                    background: '#4285F4',
+                                    color: 'white',
+                                    border: 'none',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    cursor: 'pointer',
+                                    transition: 'background 0.2s'
+                                }}
+                                disabled={!!editMsgId || (!msg.trim() && !selectedImage)}
+                            >
+                                <FaPaperPlane size={16} />
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default GroupChat;
