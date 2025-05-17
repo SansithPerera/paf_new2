@@ -49,4 +49,125 @@ function AddNewPost() {
       } else {
         alert(`Unsupported file type: ${file.type}`);
         return;
-      }   
+      } 
+      
+      // Add file preview object with type and URL
+      previews.push({ type: file.type, url: URL.createObjectURL(file) });
+    }
+
+    if (imageCount > 3) {
+      alert('You can upload a maximum of 3 images.');
+      return;
+    }
+
+    if (videoCount > 1) {
+      alert('You can upload only 1 video.');
+      return;
+    }
+
+    setMedia([...media, ...files]);
+    setMediaPreviews([...mediaPreviews, ...previews]);
+  };
+
+  const removeMedia = (index) => {
+    const updatedMedia = [...media];
+    const updatedPreviews = [...mediaPreviews];
+    
+    // Revoke the object URL to prevent memory leaks
+    URL.revokeObjectURL(mediaPreviews[index].url);
+    
+    updatedMedia.splice(index, 1);
+    updatedPreviews.splice(index, 1);
+    
+    setMedia(updatedMedia);
+    setMediaPreviews(updatedPreviews);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    
+    const files = Array.from(e.dataTransfer.files);
+    processMediaFiles(files);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!title.trim()) {
+      alert('Please enter a title for your post');
+      return;
+    }
+    
+    if (!description.trim()) {
+      alert('Please enter a description for your post');
+      return;
+    }
+    
+    if (!categories) {
+      alert('Please select a category for your post');
+      return;
+    }
+    
+    if (media.length === 0) {
+      alert('Please upload at least one media file');
+      return;
+    }
+    
+    const formData = new FormData();
+    formData.append('userID', userID);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('category', categories);
+    media.forEach((file) => formData.append('mediaFiles', file));
+
+    try {
+      // Show loading state
+      document.getElementById('submit-button').disabled = true;
+      document.getElementById('submit-button').innerText = 'Creating Post...';
+      
+      const response = await axios.post('http://localhost:8080/posts', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      
+      alert('Post created successfully!');
+      window.location.href = '/myAllPost';
+    } catch (error) {
+      console.error(error);
+      alert('Failed to create post. Please try again.');
+      
+      // Reset button state
+      document.getElementById('submit-button').disabled = false;
+      document.getElementById('submit-button').innerText = 'Create Post';
+    }
+  };
+
+  return (
+    <div className="add-post-container" style={{ 
+      position: 'relative', 
+      minHeight: '100vh',
+      backgroundColor: '#f9f9f9',
+      paddingBottom: '50px',
+      paddingTop: '20px'
+    }}>
+      <div className="gradient-overlay" style={{ 
+        position: 'absolute', 
+        top: 0, 
+        left: 0, 
+        width: '100%', 
+        height: '100%', 
+        background: 'linear-gradient(135deg, rgba(65, 105, 225, 0.1), rgba(219, 112, 147, 0.2))', 
+        zIndex: 1 
+      }}></div>
+      
+      <NavBar />
