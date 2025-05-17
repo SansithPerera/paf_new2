@@ -179,3 +179,213 @@ function GroupChat() {
                         <div style={{ fontSize: '0.9rem', opacity: 0.9 }}>{messages.length} messages</div>
                     </div>
 
+
+
+                    {/* Messages Container */}
+                    <div style={{
+                        height: '500px',
+                        overflowY: 'auto',
+                        padding: '20px',
+                        background: 'linear-gradient(to bottom, #f9f9f9, #ffffff)'
+                    }}>
+                        {messages.map((m, idx) => (
+                            <div key={m.id || idx} style={{
+                                marginBottom: '16px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: m.userId === userId ? 'flex-end' : 'flex-start'
+                            }}>
+                                <div style={{
+                                    maxWidth: '70%',
+                                    position: 'relative'
+                                }}>
+                                    <div style={{
+                                        fontSize: '0.75rem',
+                                        color: '#666',
+                                        marginBottom: '4px',
+                                        textAlign: m.userId === userId ? 'right' : 'left',
+                                        padding: '0 8px'
+                                    }}>
+                                        {userNames[m.userId] || m.userId}
+                                    </div>
+                                    <div style={{
+                                        background: m.userId === userId ? '#4285F4' : '#e9ecef',
+                                        color: m.userId === userId ? 'white' : '#333',
+                                        borderRadius: m.userId === userId ?
+                                            '18px 4px 18px 18px' :
+                                            '4px 18px 18px 18px',
+                                        padding: '12px 16px',
+                                        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
+                                        position: 'relative'
+                                    }}>
+                                        {editMsgId === m.id ? (
+                                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                <input
+                                                    type="text"
+                                                    value={editMsgValue}
+                                                    onChange={e => setEditMsgValue(e.target.value)}
+                                                    style={{
+                                                        width: '100%',
+                                                        padding: '8px 12px',
+                                                        borderRadius: '18px',
+                                                        border: '1px solid #ddd',
+                                                        marginBottom: '8px',
+                                                        fontSize: '0.9rem'
+                                                    }}
+                                                    autoFocus
+                                                />
+                                                <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleSaveEdit(m.id)}
+                                                        style={{
+                                                            background: '#34a853',
+                                                            color: 'white',
+                                                            border: 'none',
+                                                            borderRadius: '50%',
+                                                            width: '32px',
+                                                            height: '32px',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            cursor: 'pointer'
+                                                        }}
+                                                    >
+                                                        <FaSave size={14} />
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={handleCancelEdit}
+                                                        style={{
+                                                            background: '#ea4335',
+                                                            color: 'white',
+                                                            border: 'none',
+                                                            borderRadius: '50%',
+                                                            width: '32px',
+                                                            height: '32px',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            cursor: 'pointer'
+                                                        }}
+                                                    >
+                                                        <FaTimes size={14} />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <>
+                                                {m.msg && <div style={{ fontSize: '0.95rem', wordBreak: 'break-word' }}>{m.msg}</div>}
+                                                {m.image &&
+                                                    <div style={{ marginTop: 8 }}>
+                                                        <img
+                                                            src={`http://localhost:8080/groupChat/images/${m.image}`}
+                                                            alt="chat-img"
+                                                            style={{
+                                                                maxWidth: '220px',
+                                                                maxHeight: '180px',
+                                                                borderRadius: 10,
+                                                                border: '1px solid #ddd',
+                                                                background: '#fff'
+                                                            }}
+                                                        />
+                                                    </div>
+                                                }
+                                            </>
+                                        )}
+                                    </div>
+                                    <div style={{
+                                        fontSize: '0.7rem',
+                                        color: '#999',
+                                        marginTop: '4px',
+                                        textAlign: m.userId === userId ? 'right' : 'left',
+                                        padding: '0 8px'
+                                    }}>
+                                        {m.timestamp && new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                    </div>
+                                    {m.userId === userId && editMsgId !== m.id && !m.image && (
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: '50%',
+                                            right: m.userId === userId ? 'calc(100% + 8px)' : 'auto',
+                                            left: m.userId === userId ? 'auto' : 'calc(100% + 8px)',
+                                            transform: 'translateY(-50%)',
+                                            display: 'flex',
+                                            gap: '4px',
+                                            background: 'white',
+                                            borderRadius: '16px',
+                                            padding: '4px',
+                                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                                        }}>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleEdit(m.id, m.msg)}
+                                                style={{
+                                                    background: 'none',
+                                                    border: 'none',
+                                                    color: '#666',
+                                                    cursor: 'pointer',
+                                                    width: '28px',
+                                                    height: '28px',
+                                                    borderRadius: '50%',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    transition: 'background 0.2s'
+                                                }}
+                                            >
+                                                <FaEdit size={12} />
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleDelete(m.id)}
+                                                style={{
+                                                    background: 'none',
+                                                    border: 'none',
+                                                    color: '#666',
+                                                    cursor: 'pointer',
+                                                    width: '28px',
+                                                    height: '28px',
+                                                    borderRadius: '50%',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    transition: 'background 0.2s'
+                                                }}
+                                            >
+                                                <FaTrash size={12} />
+                                            </button>
+                                        </div>
+                                    )}
+                                    {m.userId === userId && editMsgId !== m.id && m.image && (
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: '50%',
+                                            right: m.userId === userId ? 'calc(100% + 8px)' : 'auto',
+                                            left: m.userId === userId ? 'auto' : 'calc(100% + 8px)',
+                                            transform: 'translateY(-50%)',
+                                            display: 'flex',
+                                            gap: '4px',
+                                            background: 'white',
+                                            borderRadius: '16px',
+                                            padding: '4px',
+                                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                                        }}>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleDelete(m.id)}
+                                                style={{
+                                                    background: 'none',
+                                                    border: 'none',
+                                                    color: '#666',
+                                                    cursor: 'pointer',
+                                                    width: '28px',
+                                                    height: '28px',
+                                                    borderRadius: '50%',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    transition: 'background 0.2s'
+                                                }}
+                                            ></button>
+                                            
