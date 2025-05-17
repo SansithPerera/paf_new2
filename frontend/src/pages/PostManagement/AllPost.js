@@ -230,7 +230,16 @@ function AllPost() {
     } catch (error) {
       console.error('Error adding comment:', error);
     }
-  };     
+  }; 
+  
+  
+  const handleDeleteComment = async (postId, commentId) => {
+    const userID = localStorage.getItem('userID');
+    try {
+      await axios.delete(`http://localhost:8080/posts/${postId}/comment/${commentId}`, {
+        params: { userID },
+      });
+
 setEditingComment({}); // Clear editing state
     } catch (error) {
       console.error('Error saving comment:', error);
