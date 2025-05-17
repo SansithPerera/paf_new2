@@ -286,3 +286,59 @@ function UpdateUserProfile() {
                     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
                   }}>
                     {skill}
+
+                    <button 
+                      type="button"
+                      className="remove-skill-btn"
+                      onClick={() => handleRemoveSkill(skill)}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: '#4285F4',
+                        cursor: 'pointer',
+                        fontSize: '18px',
+                        fontWeight: 'bold',
+                        marginLeft: '6px',
+                        padding: '0 3px'
+                      }}
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="form-group" style={{ marginTop: '20px' }}>
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Profile Picture</label>
+              <div className="profile-upload-container">
+                <div className="profile-preview" style={{ 
+                  width: '150px', 
+                  height: '150px', 
+                  borderRadius: '50%', 
+                  overflow: 'hidden',
+                  margin: '0 auto 15px',
+                  border: '3px solid #4285F4',
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                }}>
+                  {previewImage ? (
+                    <img src={previewImage} alt="Selected Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : formData.profilePicturePath ? (
+                    <img 
+                      src={`http://localhost:8080/uploads/profile/${formData.profilePicturePath}`}
+                      alt="Current Profile"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <div className="no-profile" style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      height: '100%',
+                      backgroundColor: '#f0f0f0',
+                      color: '#555'
+                    }}>
+                      <span>No profile picture</span>
+                    </div>
+                  )}
+                </div>
