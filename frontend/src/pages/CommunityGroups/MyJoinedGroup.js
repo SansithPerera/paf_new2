@@ -156,3 +156,4 @@ function MyJoinedGroup() {
   );
 }
    
+export default MyJoinedGroup;
