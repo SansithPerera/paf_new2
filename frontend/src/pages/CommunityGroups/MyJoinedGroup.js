@@ -110,4 +110,12 @@ function MyJoinedGroup() {
               transition: 'all 0.3s ease',
               boxShadow: '0 4px 8px rgba(66, 133, 244, 0.3)'
             }}
-          >         
+          >  
+            My Joined Group
+          </button>
+        </div>
+        {groups.length === 0 ? (
+          <div className="no-groups-message">
+            <p>No Join Group Plz Join group</p>
+          </div>
+        ) : (       
