@@ -24,3 +24,43 @@ function MyJoinedGroup() {
       })
       .catch((error) => console.error('Error fetching group data:', error));
   }, [userId]);
+  return (
+    <div>
+      <NavBar />
+      <br /><br /><br />
+      <div className="groups-container">
+        <div className='add_new_btn'
+          onClick={() => (window.location.href = '/createGroup')}
+          style={{
+            backgroundColor: '#FF6F61',
+            color: '#fff',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 0 20px auto',
+            boxShadow: '0 4px 12px rgba(255, 111, 97, 0.3)',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = '#E64A45';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 6px 14px rgba(255, 111, 97, 0.4)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = '#FF6F61';
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 111, 97, 0.3)';
+          }}
+        >
+          <IoIosCreate className='add_new_btn_icon' style={{ fontSize: '24px' }} />
+        </div>
+        <div className='filter-buttons' style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '15px',
+          marginBottom: '25px'
+        }}>
