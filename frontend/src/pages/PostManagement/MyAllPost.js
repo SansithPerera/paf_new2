@@ -678,6 +678,49 @@ function MyAllPost() {
                       }}
                     />
                   </div>
+                  <br/>
+                  {post.comments?.map((comment) => (
+                    <div key={comment.id} className='coment_full_card' style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
+                      padding: '10px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.02)',
+                      borderRadius: '8px',
+                      marginBottom: '10px'
+                    }}>
+                      <div className='comnt_card' style={{ flex: '1' }}>
+                        <p className='comnt_card_username' style={{ 
+                          fontWeight: 'bold', 
+                          color: '#4285F4',
+                          marginBottom: '5px',
+                          fontSize: '14px'
+                        }}>{comment.userFullName}</p>
+                        {editingComment.id === comment.id ? (
+                          <input
+                            type="text"
+                            className='edit_comment_input'
+                            value={editingComment.content}
+                            onChange={(e) =>
+                              setEditingComment({ ...editingComment, content: e.target.value })
+                            }
+                            autoFocus
+                            style={{
+                              width: '100%',
+                              padding: '8px 12px',
+                              borderRadius: '6px',
+                              border: '1px solid #4285F4',
+                              outline: 'none'
+                            }}
+                          />
+                        ) : (
+                          <p className='comnt_card_coment' style={{ 
+                            color: '#555',
+                            margin: 0,
+                            fontSize: '15px'
+                          }}>{comment.content}</p>
+                        )}
+                      </div>
 
 
 
