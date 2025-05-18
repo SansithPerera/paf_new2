@@ -260,6 +260,29 @@ function MyAllPost() {
       console.error('Error saving comment:', error);
     }
   };
+
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    const filtered = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(query) ||
+        post.description.toLowerCase().includes(query) ||
+        (post.category && post.category.toLowerCase().includes(query))
+    );
+    setFilteredPosts(filtered);
+  };
+
+  const openModal = (mediaUrl) => {
+    setSelectedMedia(mediaUrl);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedMedia(null);
+    setIsModalOpen(false);
+  };
   return (
     <Layout>
       <div className='continSection' style={{ 
