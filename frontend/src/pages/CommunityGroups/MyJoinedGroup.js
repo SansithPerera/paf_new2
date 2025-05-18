@@ -118,4 +118,41 @@ function MyJoinedGroup() {
           <div className="no-groups-message">
             <p>No Join Group Plz Join group</p>
           </div>
-        ) : (       
+        ) : (    
+                      <div className="groups-list">
+            {groups.map((group) => (
+              <div key={group.id} className="group-card-full">
+                <div className="group-content">
+                  <div className="group-header">
+                    <h3 className="group-title">{group.groupTitle}</h3>
+                    <p className="group-description">{group.groupDescription}</p>
+                  </div>
+                  <div className="group-meta">
+                    <div className="meta-item">
+                      <FaUsers className="meta-icon" />
+                      <span>
+                        {Array.isArray(group.groupMembersIDs) ? group.groupMembersIDs.length : 0} members
+                      </span>
+                    </div>
+                    <div className="meta-item">
+                      <FaUserShield className="meta-icon" />
+                      <span>Created by {group.adminName}</span>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  className="join-btn"
+                  onClick={() => navigate(`/groupChat/${group.id}`)}
+                >
+                  View Group
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <br />
+    </div>
+  );
+}
+   
