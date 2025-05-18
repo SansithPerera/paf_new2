@@ -722,6 +722,126 @@ function MyAllPost() {
                         )}
                       </div>
 
+                      <div className='coment_action_btn' style={{ marginLeft: '10px' }}>
+                        {comment.userID === loggedInUserID && (
+                          <>
+                            {editingComment.id === comment.id ? (
+                              <>
+                                <FiSave className='coment_btn'
+                                  onClick={() =>
+                                    handleSaveComment(post.id, comment.id, editingComment.content)
+                                  }
+                                  style={{
+                                    color: '#4285F4',
+                                    cursor: 'pointer',
+                                    fontSize: '24px',
+                                    margin: '0 5px',
+                                    padding: '8px',
+                                    borderRadius: '50%',
+                                    backgroundColor: 'rgba(66, 133, 244, 0.1)',
+                                    width: '40px',
+                                    height: '40px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    transition: 'all 0.2s ease'
+                                  }}
+                                  onMouseOver={(e) => {
+                                    e.target.style.backgroundColor = 'rgba(66, 133, 244, 0.2)';
+                                    e.target.style.transform = 'scale(1.1)';
+                                  }}
+                                  onMouseOut={(e) => {
+                                    e.target.style.backgroundColor = 'rgba(66, 133, 244, 0.1)';
+                                    e.target.style.transform = 'scale(1)';
+                                  }}
+                                />
+                                <TbPencilCancel className='coment_btn'
+                                  onClick={() => setEditingComment({})}
+                                  style={{
+                                    color: '#FF6F61',
+                                    cursor: 'pointer',
+                                    fontSize: '24px',
+                                    margin: '0 5px',
+                                    padding: '8px',
+                                    borderRadius: '50%',
+                                    backgroundColor: 'rgba(255, 111, 97, 0.1)',
+                                    width: '40px',
+                                    height: '40px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    transition: 'all 0.2s ease'
+                                  }}
+                                  onMouseOver={(e) => {
+                                    e.target.style.backgroundColor = 'rgba(255, 111, 97, 0.2)';
+                                    e.target.style.transform = 'scale(1.1)';
+                                  }}
+                                  onMouseOut={(e) => {
+                                    e.target.style.backgroundColor = 'rgba(255, 111, 97, 0.1)';
+                                    e.target.style.transform = 'scale(1)';
+                                  }}
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <GrUpdate className='coment_btn' 
+                                  onClick={() =>
+                                    setEditingComment({ id: comment.id, content: comment.content })
+                                  }
+                                  style={{
+                                    color: '#4285F4',
+                                    cursor: 'pointer',
+                                    fontSize: '24px',
+                                    margin: '0 5px',
+                                    padding: '8px',
+                                    borderRadius: '50%',
+                                    backgroundColor: 'rgba(66, 133, 244, 0.1)',
+                                    width: '40px',
+                                    height: '40px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    transition: 'all 0.2s ease'
+                                  }}
+                                  onMouseOver={(e) => {
+                                    e.target.style.backgroundColor = 'rgba(66, 133, 244, 0.2)';
+                                    e.target.style.transform = 'scale(1.1)';
+                                  }}
+                                  onMouseOut={(e) => {
+                                    e.target.style.backgroundColor = 'rgba(66, 133, 244, 0.1)';
+                                    e.target.style.transform = 'scale(1)';
+                                  }}
+                                />
+                                <MdDelete className='coment_btn' 
+                                  onClick={() => handleDeleteComment(post.id, comment.id)}
+                                  style={{
+                                    color: '#FF6F61',
+                                    cursor: 'pointer',
+                                    fontSize: '24px',
+                                    margin: '0 5px',
+                                    padding: '8px',
+                                    borderRadius: '50%',
+                                    backgroundColor: 'rgba(255, 111, 97, 0.1)',
+                                    width: '40px',
+                                    height: '40px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    transition: 'all 0.2s ease'
+                                  }}
+                                  onMouseOver={(e) => {
+                                    e.target.style.backgroundColor = 'rgba(255, 111, 97, 0.2)';
+                                    e.target.style.transform = 'scale(1.1)';
+                                  }}
+                                  onMouseOut={(e) => {
+                                    e.target.style.backgroundColor = 'rgba(255, 111, 97, 0.1)';
+                                    e.target.style.transform = 'scale(1)';
+                                  }}
+                                />
+                              </>
+                            )}
+                          </>
+                        )}
 
 
 
