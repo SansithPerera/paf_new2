@@ -613,7 +613,71 @@ function MyAllPost() {
                       {Object.values(post.likes || {}).filter((liked) => liked).length}
                     </p>
                   </div>
-
+                  <div className='like_btn_con' style={{ display: 'flex', alignItems: 'center' }}>
+                    <FaCommentAlt
+                      className='combtn'
+                      style={{
+                        color: '#4285F4',
+                        fontSize: '20px',
+                        marginRight: '5px'
+                      }}
+                    />
+                    <p className='like_num' style={{ 
+                      color: '#555',
+                      marginLeft: '5px',
+                      fontWeight: 'bold'
+                    }}>
+                      {post.comments?.length || 0}
+                    </p>
+                  </div>
+                </div>
+                <div className='withsett'>
+                  <div className='add_comennt_con' style={{
+                    display: 'flex',
+                    marginBottom: '15px'
+                  }}>
+                    <input
+                      type="text"
+                      className='add_coment_input'
+                      placeholder="Add a comment"
+                      value={newComment[post.id] || ''}
+                      onChange={(e) =>
+                        setNewComment({ ...newComment, [post.id]: e.target.value })
+                      }
+                      style={{
+                        flex: '1',
+                        padding: '10px 15px',
+                        borderRadius: '20px',
+                        border: '1px solid #ccc',
+                        outline: 'none',
+                        boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)'
+                      }}
+                    />
+                    <IoSend
+                      onClick={() => handleAddComment(post.id)}
+                      className='add_coment_btn'
+                      style={{
+                        backgroundColor: '#4285F4',
+                        color: '#fff',
+                        padding: '10px',
+                        borderRadius: '50%',
+                        marginLeft: '10px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 2px 5px rgba(66, 133, 244, 0.3)'
+                      }}
+                      onMouseOver={(e) => {
+                        e.target.style.backgroundColor = '#3367D6';
+                        e.target.style.transform = 'translateY(-2px)';
+                        e.target.style.boxShadow = '0 4px 8px rgba(66, 133, 244, 0.4)';
+                      }}
+                      onMouseOut={(e) => {
+                        e.target.style.backgroundColor = '#4285F4';
+                        e.target.style.transform = 'translateY(0)';
+                        e.target.style.boxShadow = '0 2px 5px rgba(66, 133, 244, 0.3)';
+                      }}
+                    />
+                  </div>
 
 
 
