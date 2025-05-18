@@ -42,3 +42,40 @@ function UpdateGroupDetails() {
       alert(error.message || 'An error occurred.');
     }
   };
+
+    return (
+    <div>
+      <NavBar />
+      <br />  <br />  <br />
+      <div className="update-group-container">
+        <h2 className="update-group-title">Update Group Details</h2>
+        <form className="update-group-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Group Title</label>
+            <input
+              className="form-input"
+              name="groupTitle"
+              placeholder="Enter group title"
+              value={formData.groupTitle}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Group Description</label>
+            <textarea
+              className="form-textarea"
+              name="groupDescription"
+              placeholder="Enter group description"
+              value={formData.groupDescription}
+              onChange={handleChange}
+              required
+              rows={4}
+            />
+          </div>
+          <button type="submit" className="submit-btn">Update Group</button>
+        </form>
+      </div>
+    </div>
+  );
+}
