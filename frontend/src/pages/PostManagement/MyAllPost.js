@@ -139,6 +139,75 @@ function MyAllPost() {
       console.error('Error liking post:', error);
     }
   };
+
+  const handleFollowToggle = async (postOwnerID) => {
+    const userID = localStorage.getItem('userID');
+    if (!userID) {
+      alert('Please log in to follow/unfollow users.');
+      return;
+    }
+    try {
+      if (followedUsers.includes(postOwnerID)) {
+        await axios.put(`http://localhost:8080/user/${userID}/unfollow`, { unfollowUserID: postOwnerID });
+        setFollowedUsers(followedUsers.filter((id) => id !== postOwnerID));
+      } else {
+        await axios.put(`http://localhost:8080/user/${userID}/follow`, { followUserID: postOwnerID });
+        setFollowedUsers([...followedUsers, postOwnerID]);
+      }
+    } catch (error) {
+      console.error('Error toggling follow state:', error);
+    }
+  };
+
+  const handleAddComment = async (postId) => {
+    const userID = localStorage.getItem('userID');
+    if (!userID) {
+      alert('Please log in to comment.');
+      return;
+    }
+    const content = newComment[postId] || '';
+    if (!content.trim()) {
+      alert('Comment cannot be empty.');
+      return;
+    }
+    try {
+      const response = await axios.post(`http://localhost:8080/posts/${postId}/comment`, {
+        userID,
+        content,
+      });
+
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId ? { ...post, comments: response.data.comments } : post
+        )
+      );
+
+      setFilteredPosts((prevFilteredPosts) =>
+        prevFilteredPosts.map((post) =>
+          post.id === postId ? { ...post, comments: response.data.comments } : post
+        )
+      );
+
+      setNewComment({ ...newComment, [postId]: '' });
+    } catch (error) {
+      console.error('Error adding comment:', error);
+    }
+  };
+
+  const handleDeleteComment = async (postId, commentId) => {
+    const userID = localStorage.getItem('userID');
+    try {
+      await axios.delete(`http://localhost:8080/posts/${postId}/comment/${commentId}`, {
+        params: { userID },
+      });
+
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId
+            ? { ...post, comments: post.comments.filter((comment) => comment.id !== commentId) }
+            : post
+        )
+      );
   return (
     <Layout>
       <div className='continSection' style={{ 
