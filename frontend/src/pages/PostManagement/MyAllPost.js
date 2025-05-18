@@ -577,6 +577,42 @@ function MyAllPost() {
                   ))}
                 </div>
 
+                <div className='like_coment_lne' style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '10px 0',
+                  borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+                  marginBottom: '15px'
+                }}>
+                  <div className='like_btn_con' style={{ display: 'flex', alignItems: 'center' }}>
+                    <BiSolidLike
+                      className={post.likes?.[localStorage.getItem('userID')] ? 'unlikebtn' : 'likebtn'}
+                      onClick={() => handleLike(post.id)}
+                      style={{
+                        color: post.likes?.[localStorage.getItem('userID')] ? '#FF6F61' : '#4285F4',
+                        fontSize: '22px',
+                        cursor: 'pointer',
+                        marginRight: '5px',
+                        transition: 'transform 0.2s, color 0.2s'
+                      }}
+                      onMouseOver={(e) => {
+                        e.target.style.transform = 'scale(1.2)';
+                      }}
+                      onMouseOut={(e) => {
+                        e.target.style.transform = 'scale(1)';
+                      }}
+                    >
+                      {post.likes?.[localStorage.getItem('userID')] ? 'Unlike' : 'Like'}
+                    </BiSolidLike>
+                    <p className='like_num' style={{ 
+                      color: '#555',
+                      marginLeft: '5px',
+                      fontWeight: 'bold'
+                    }}>
+                      {Object.values(post.likes || {}).filter((liked) => liked).length}
+                    </p>
+                  </div>
 
 
 
