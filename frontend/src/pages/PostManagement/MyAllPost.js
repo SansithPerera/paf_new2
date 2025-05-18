@@ -842,6 +842,45 @@ function MyAllPost() {
                             )}
                           </>
                         )}
+                        
+                        {post.userID === loggedInUserID && comment.userID !== loggedInUserID && (
+                          <MdDelete 
+                            className='coment_btn'
+                            onClick={() => handleDeleteComment(post.id, comment.id)}
+                            style={{
+                              color: '#FF6F61',
+                              cursor: 'pointer',
+                              fontSize: '24px',
+                              margin: '0 5px',
+                              padding: '8px',
+                              borderRadius: '50%',
+                              backgroundColor: 'rgba(255, 111, 97, 0.1)',
+                              width: '40px',
+                              height: '40px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              transition: 'all 0.2s ease'
+                            }}
+                            onMouseOver={(e) => {
+                              e.target.style.backgroundColor = 'rgba(255, 111, 97, 0.2)';
+                              e.target.style.transform = 'scale(1.1)';
+                            }}
+                            onMouseOut={(e) => {
+                              e.target.style.backgroundColor = 'rgba(255, 111, 97, 0.1)';
+                              e.target.style.transform = 'scale(1)';
+                            }}
+                          />
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
 
 
 
