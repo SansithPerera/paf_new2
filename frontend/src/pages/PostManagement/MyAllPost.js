@@ -130,6 +130,15 @@ function MyAllPost() {
         )
       );
 
+      setFilteredPosts((prevFilteredPosts) =>
+        prevFilteredPosts.map((post) =>
+          post.id === postId ? { ...post, likes: response.data.likes } : post
+        )
+      );
+    } catch (error) {
+      console.error('Error liking post:', error);
+    }
+  };
   return (
     <Layout>
       <div className='continSection' style={{ 
