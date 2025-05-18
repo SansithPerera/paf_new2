@@ -77,4 +77,20 @@ function MyJoinedGroup() {
               cursor: 'pointer',
               transition: 'all 0.3s ease',
             }}
-          >           
+          > 
+                      All Group
+          </button>
+          <button
+            onClick={() => (window.location.href = '/myGroup')}
+            className="filter-btn"
+            style={{
+              padding: '10px 20px',
+              borderRadius: '20px',
+              border: 'none',
+              background: 'rgba(66, 133, 244, 0.1)',
+              color: '#4285F4',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+            }}
+          >          
